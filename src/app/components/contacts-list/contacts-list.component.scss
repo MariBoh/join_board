@@ -1,0 +1,65 @@
+.contacts-container {
+    display: flex;
+    height: 928px;
+    width: 100%;
+}
+
+.contacts-list {
+    width: 456px;
+    padding: 16px;
+    background-color: rgb(221, 218, 218);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.add-contact-button {
+    width: 352px;
+    height: 56px;
+    border-radius: 10px;
+    background-color: #182534;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: center;
+}
+
+.contact-group {
+    margin-top: 16px;
+}
+
+.contact-letter {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.contact-entry {
+    padding-left: 12px;
+    margin-bottom: 8px;
+}
+
+.contact-name {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.contact-email {
+    font-size: 14px;
+    color: #666;
+}
+
+.contacts-details {
+    flex-grow: 1;
+    padding: 40px;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    text-align: center;
+}
+
+.contacts-details h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
