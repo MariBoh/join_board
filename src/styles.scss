@@ -1,56 +1,5 @@
-/* 
-  Hinweis für das Team:
-  Zusätzlich zu den CSS-Variablen für Farben habe ich(Valeriya) SCSS-Variablen eingeführt. 
-  So können wir die Farben sowohl in regulärem CSS (z. B. mit var(--primary-bg)) 
-  als auch bequem in SCSS (z. B. mit $primary-bg) verwenden. 
-  Das erleichtert die Wiederverwendung und sorgt für mehr Flexibilität im Styling.
-*/
-
-// SCSS-Variablen
-$primary-bg:        #F6F7F8;
-$primary-font:      #000000;
-$secondary-font:    #ffffff;
-$darkblue:          #2A3647;
-$nav-button:        #CDCDCD;
-$privacy-legal:     #A8A8A8;
-$email-font:        #007CEE;
-$link-font:         #29ABE2;
-
-// CSS-Variablen:
-:root {
-  --primary-bg: #{$primary-bg};
-  --primary-font: #{$primary-font};
-  --secondary-font: #{$secondary-font};
-  --darkblue: #{$darkblue};
-  --nav-button: #{$nav-button};
-  --privacy-legal: #{$privacy-legal};
-  --email-font: #{$email-font};
-  --link-font: #{$link-font};
-}
-
-
-/* inter-regular - latin */
-@font-face {
-    font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../src/assets/fonts/inter-v18-latin-regular.woff2') format('woff2');
-    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
-/* inter-700 - latin */
-@font-face {
-    font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    src: url('../src/assets/fonts/inter-v18-latin-700.woff2') format('woff2');
-    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
+@import "./colors.scss";
+@import "./fonts.scss";
 
 * {
     box-sizing: border-box;
@@ -58,4 +7,7 @@ $link-font:         #29ABE2;
     padding: 0;
     text-decoration: none;
     scroll-behavior: smooth;
+}
+body {
+    max-width: 1440px;
 }

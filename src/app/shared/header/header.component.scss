@@ -1,12 +1,13 @@
-@import "../../../styles";
+@import "../../../colors.scss";
+@import "../../../fonts.scss";
 
 .header {
   background-color: $secondary-font;
   color: $primary-font;
-  max-width: 1440px;
   height: 96px;
   padding-right: 40px;
   padding-left: 116px;
+  box-shadow: 0 8px 4px -4px rgba(0, 0, 0, 0.1);
 
   .header-container {
     display: flex;
@@ -52,15 +53,16 @@
     }
 
     .btnHamburgerMenu {
-      position: relative;
       width: 56px;
       height: 56px;
-      background: url("/assets/imgs/imgs_story1/SM.png") no-repeat center;
-      background-size: contain;
+      border: 3px solid $darkblue;
+      border-radius: 50%;
+      color: $link-font;
+      font-size: 20px;
+      font-weight: bold;
 
       &:hover {
-        background: url("/assets/imgs/imgs_story1/SM2.png") no-repeat center;
-        border-radius: 50%;
+        background-color: $darkblue-transparent;
       }
     }
   }
