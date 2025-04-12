@@ -8,6 +8,7 @@ import { ContactsListComponent } from '../contacts-list/contacts-list.component'
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
+
 export class HomeComponent {
 
 }

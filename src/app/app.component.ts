@@ -8,12 +8,12 @@ import { FooterComponent } from "./shared/footer/footer.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule , RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
 
   title = 'join_board';
-  
+
 }
