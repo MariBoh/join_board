@@ -1,0 +1,67 @@
+@import "../../../styles";
+
+.header {
+  background-color: $secondary-font;
+  color: $primary-font;
+  max-width: 1440px;
+  height: 96px;
+  padding-right: 40px;
+  padding-left: 116px;
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  .title {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+  }
+
+  .header-icons {
+    max-width: 104px;
+    max-height: 56px;
+    gap: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    .btnHelp {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      background: url("/assets/imgs/imgs_story1/help.png") no-repeat center;
+      background-size: contain;
+
+      &:hover {
+        width: 24px;
+        height: 24px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+      }
+    }
+
+    .btnHamburgerMenu {
+      position: relative;
+      width: 56px;
+      height: 56px;
+      background: url("/assets/imgs/imgs_story1/SM.png") no-repeat center;
+      background-size: contain;
+
+      &:hover {
+        background: url("/assets/imgs/imgs_story1/SM2.png") no-repeat center;
+        border-radius: 50%;
+      }
+    }
+  }
+}
