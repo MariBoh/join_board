@@ -1,0 +1,8 @@
+@import "../../../colors.scss";
+
+.navbarContainer {
+    height: 100dvh;
+    width: clamp(180px, 16.1vw, 232px);
+    background-color: $darkblue;
+
+}
