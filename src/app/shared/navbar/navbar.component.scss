@@ -1,21 +1,18 @@
 @import "../../../colors.scss";
 @import "../../../fonts.scss";
+@import "../../../mixins.scss";
 
 .navbarContainer {
   height: 100dvh;
   width: clamp(180px, 16.1vw, 232px);
   background-color: $darkblue;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  @include flex-center($direction: column, $justify: space-between);
   padding: 64px 0;
 
   .logoAndMenuEl {
     height: 50%;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include flex-center($direction: column, $align: center);
     gap: 114px;
 
     .logoJoin {
@@ -26,20 +23,17 @@
     .menuElements {
       height: 100%;
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      @include flex-center($direction: column, $align: center);
       gap: 15px;
 
       .nav-link {
-        display: flex;
-        align-items: center;
+        @include flex-center($align: center);
         gap: 10.5px;
         color: $nav-button;
         text-decoration: none;
         font-size: 16px;
         font-family: "Inter", sans-serif;
-        padding: 8px 0 8px 58.5px;
+        padding: 8px 0 8px 26%;
         width: 100%;
 
         img {
@@ -68,10 +62,7 @@
   }
 
   .legal {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
+    @include flex-center($direction: column, $align: flex-start, $justify: flex-end);
     gap: 4px;
     height: 50%;
     width: 100%;
@@ -83,7 +74,7 @@
       text-decoration: none;
       font-family: "Inter", sans-serif;
       width: 100%;
-      padding: 9px 0 9px 58.5px;
+      padding: 9px 0 9px 26%;
 
       &:hover {
         color: $link-font;

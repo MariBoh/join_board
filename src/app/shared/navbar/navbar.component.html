@@ -10,10 +10,8 @@
 
     <div class="menuElements">
       <a
-        href="#"
+        [routerLink]="['/summary']" routerLinkActive="active" 
         class="nav-link"
-        [ngClass]="{ active: menuItem === 'summary' }"
-        (click)="setActiveMenu('summary'); $event.preventDefault()"
       >
         <img
           src="../../../assets/imgs/imgs_story1/Summary.png"
@@ -24,10 +22,8 @@
       </a>
 
       <a
-        href="#"
+        [routerLink]="['/add-task']" routerLinkActive="active" 
         class="nav-link"
-        [ngClass]="{ active: menuItem === 'addTask' }"
-        (click)="setActiveMenu('addTask'); $event.preventDefault()"
       >
         <img
           src="../../../assets/imgs/imgs_story1/addTask.png"
@@ -38,10 +34,8 @@
       </a>
 
       <a
-        href="#"
+        [routerLink]="['/board']" routerLinkActive="active" 
         class="nav-link"
-        [ngClass]="{ active: menuItem === 'board' }"
-        (click)="setActiveMenu('board'); $event.preventDefault()"
       >
         <img
           src="../../../assets/imgs/imgs_story1/Board.png"
@@ -52,10 +46,8 @@
       </a>
 
       <a
-        href="#"
+        [routerLink]="['/contacts']" routerLinkActive="active" 
         class="nav-link"
-        [ngClass]="{ active: menuItem === 'contacts' }"
-        (click)="setActiveMenu('contacts'); $event.preventDefault()"
       >
         <img
           src="../../../assets/imgs/imgs_story1/Contacts.png"
@@ -68,11 +60,13 @@
   </div>
 
   <div class="legal">
-    <a [ngClass]="{ active: menuItem === 'privacyPolicy' }" 
-    (click)="setActiveMenu('privacyPolicy'); $event.preventDefault()"
-    href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-    <a [ngClass]="{ active: menuItem === 'legal' }" 
-    (click)="setActiveMenu('legal'); $event.preventDefault()"
-    href="#" target="_blank" rel="noopener noreferrer">Legal notice</a>
+    <a 
+      [routerLink]="['/privacy-policy']" routerLinkActive="active" 
+      target="_blank"
+    >Privacy Policy</a>
+    <a 
+      [routerLink]="['/legal-notice']" routerLinkActive="active" 
+      target="_blank"
+    >Legal notice</a>
   </div>
 </nav>
