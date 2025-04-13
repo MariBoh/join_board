@@ -11,10 +11,10 @@
         (click)="toggleMenu()"
       >SM</button>
       <!-- Menü -->
-      <div class="menu" *ngIf="menuOpen">
-        <button (click)="navigateTo('dashboard')">Legal Notice</button>
-        <button (click)="navigateTo('board')">Privacy Policy</button>
-        <button (click)="navigateTo('settings')">Log out</button>
+      <div class="menuOpenHamb" *ngIf="menuOpen">
+        <button class="btnMenu" (click)="navigateTo('dashboard')">Legal Notice</button>
+        <button class="btnMenu" (click)="navigateTo('board')">Privacy Policy</button>
+        <button class="btnMenu" (click)="navigateTo('settings')">Log out</button>
       </div>
     </div>
   </div>
