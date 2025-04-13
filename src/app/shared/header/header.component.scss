@@ -29,13 +29,10 @@
     gap: 16px;
     position: relative;
 
-    button {
+    .btnHelp {
       border: none;
       background-color: transparent;
       cursor: pointer;
-    }
-
-    .btnHelp {
       width: 20px;
       height: 20px;
       background: url("/assets/imgs/imgs_story1/help.png") no-repeat center;
@@ -46,6 +43,10 @@
         height: 24px;
         background-color: rgba(0, 0, 0, 0.1);
         border-radius: 50%;
+      }
+
+      &.hidden {
+        display: none;
       }
     }
 
