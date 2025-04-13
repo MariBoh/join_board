@@ -8,7 +8,7 @@
         aria-label="Open menu"
         aria-haspopup="true"
         [attr.aria-expanded]="menuOpen"
-        (click)="toggleMenu()"
+        (click)="toggleMenu()" [ngClass]="{ active: menuOpen}"
       >SM</button>
       <!-- Menü -->
       <div class="menuOpenHamb" *ngIf="menuOpen">

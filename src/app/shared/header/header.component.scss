@@ -64,6 +64,10 @@
       &:hover {
         background-color: $darkblue-transparent;
       }
+
+      &.active {
+        background-color: $darkblue-transparent;
+      }
     }
 
     // Menü direkt innerhalb der Icons platzieren

@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  menuOpen = false;
+  menuOpen:boolean = false;
 
   constructor(private router: Router) {}
 
