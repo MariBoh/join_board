@@ -1,8 +1,88 @@
 @import "../../../colors.scss";
 
+// Basis-Layout der Sidebar
 .navbarContainer {
-    height: 100dvh;
-    width: clamp(180px, 16.1vw, 232px);
-    background-color: $darkblue;
+  height: 100dvh;
+  width: clamp(180px, 16.1vw, 232px);
+  background-color: $darkblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 66px 0 32px;
+  box-sizing: border-box;
+}
 
+// Bereich für Logo und Menüpunkte
+.logoAndMenuEl {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+}
+
+// Logo
+.logo img {
+  width: 100px;
+  height: auto;
+}
+
+// Navigationslinks
+.menuElements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: $nav-button;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    padding: 8px 12px;
+    width: 100%;
+    max-width: 180px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+
+    span {
+      flex: 1;
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      color: $secondary-font;
+
+      img {
+        filter: brightness(150%);
+      }
+    }
+  }
+}
+
+// Footer-Links (Privacy & Legal)
+.legal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  a {
+    color: $privacy-legal;
+    font-size: 14px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+
+    &:hover {
+      color: $secondary-font;
+      text-decoration: underline;
+    }
+  }
 }
