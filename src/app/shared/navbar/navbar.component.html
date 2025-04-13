@@ -1,14 +1,20 @@
 <nav class="navbarContainer" role="navigation" aria-label="Hauptnavigation">
   <div class="logoAndMenuEl">
     <div class="logo">
-      <img class="logoJoin"
+      <img
+        class="logoJoin"
         src="../../../assets/imgs/imgs_story1/LogoWhite.png"
         alt="Join Logo"
       />
     </div>
 
     <div class="menuElements">
-      <a href="#" class="nav-link">
+      <a
+        href="#"
+        class="nav-link"
+        [ngClass]="{ active: menuItem === 'summary' }"
+        (click)="setActiveMenu('summary'); $event.preventDefault()"
+      >
         <img
           src="../../../assets/imgs/imgs_story1/Summary.png"
           alt=""
@@ -16,7 +22,13 @@
         />
         <span>Summary</span>
       </a>
-      <a href="#" class="nav-link">
+
+      <a
+        href="#"
+        class="nav-link"
+        [ngClass]="{ active: menuItem === 'addTask' }"
+        (click)="setActiveMenu('addTask'); $event.preventDefault()"
+      >
         <img
           src="../../../assets/imgs/imgs_story1/addTask.png"
           alt=""
@@ -24,7 +36,13 @@
         />
         <span>Add Task</span>
       </a>
-      <a href="#" class="nav-link">
+
+      <a
+        href="#"
+        class="nav-link"
+        [ngClass]="{ active: menuItem === 'board' }"
+        (click)="setActiveMenu('board'); $event.preventDefault()"
+      >
         <img
           src="../../../assets/imgs/imgs_story1/Board.png"
           alt=""
@@ -32,7 +50,13 @@
         />
         <span>Board</span>
       </a>
-      <a href="#" class="nav-link">
+
+      <a
+        href="#"
+        class="nav-link"
+        [ngClass]="{ active: menuItem === 'contacts' }"
+        (click)="setActiveMenu('contacts'); $event.preventDefault()"
+      >
         <img
           src="../../../assets/imgs/imgs_story1/Contacts.png"
           alt=""
@@ -44,7 +68,11 @@
   </div>
 
   <div class="legal">
-    <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-    <a href="#" target="_blank" rel="noopener noreferrer">Legal notice</a>
+    <a [ngClass]="{ active: menuItem === 'privacyPolicy' }" 
+    (click)="setActiveMenu('privacyPolicy'); $event.preventDefault()"
+    href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    <a [ngClass]="{ active: menuItem === 'legal' }" 
+    (click)="setActiveMenu('legal'); $event.preventDefault()"
+    href="#" target="_blank" rel="noopener noreferrer">Legal notice</a>
   </div>
 </nav>
