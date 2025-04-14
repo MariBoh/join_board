@@ -1,5 +1,4 @@
 <div class="contacts-container">
-
     <div class="contacts-list">
 
         <div><!-- Shardzil, hier ist der botton für deine addNewContact Funktion-->
@@ -12,35 +11,26 @@
             }
         </div>
 
-        <div class="contact-group">
-            <div class="contact-letter">A</div>
-            <div class="contact-entry">
-                <div class="contact-name">Albert</div>
-                <div class="contact-email">albert&#64;example3.com</div>
-            </div>
-        </div>
-
-        <div class="contact-group">
-            <div class="contact-letter">E</div>
-            <div class="contact-entry">
-                <div class="contact-name">Eva</div>
-                <div class="contact-email">eva&#64;example2.com</div>
-            </div>
-        </div>
-
-        <div class="contact-group">
-            <div class="contact-letter">F</div>
-            <div class="contact-entry">
-                <div class="contact-name">Frederick</div>
-                <div class="contact-email">Frederick&#64;example1.com</div>
+        <div *ngFor="let group of contactGroups" class="contact-group">
+            <div class="contact-letter">{{ group.letter }}</div>
+            <div class="contact-divider"></div>
+            <div *ngFor="let contact of group.contacts" class="contact-entry">
+                <div class="contact-avatar" [style.background-color]="contact.color">
+                    {{ contact.initials }}
+                </div>
+                <div class="contact-info">
+                    <div class="contact-name">{{ contact.name }}</div>
+                    <div class="contact-email">{{ contact.email }}</div>
+                </div>
             </div>
         </div>
     </div>
 
-
-
-
     <div class="contacts-details">
-        <h1>Contacts | Better with a team</h1>
+        <div class="contacts-title-container">
+            <h1 class="contacts-title">Contacts</h1>
+            <div class="title-divider"></div>
+            <h2 class="contacts-subtitle">Better with a team</h2>
+        </div>
     </div>
 </div>
