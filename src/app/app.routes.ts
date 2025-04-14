@@ -9,13 +9,11 @@ import { BoardComponent } from './components/board/board.component';
 import { HelpComponent } from './components/help/help.component';
 
 export const routes: Routes = [
-    
-    { path: '', component: HomeComponent },
-    { path: 'summary', component: SummaryComponent },
-    { path: 'add-task', component: AddTaskComponent },
-    { path: 'board', component: BoardComponent },    
-    { path: 'legal-notice', component: LegalNoticeComponent },
-    { path: 'privacy-policy', component: PrivacyPolicyComponent },
-    { path: 'help', component: HelpComponent },
-
+  { path: 'summary', component: SummaryComponent },
+  { path: 'add-task', component: AddTaskComponent },
+  { path: 'board', component: BoardComponent },
+  { path: 'contacts', component: HomeComponent },
+  { path: 'legal-notice', component: LegalNoticeComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'help', component: HelpComponent },
 ];
