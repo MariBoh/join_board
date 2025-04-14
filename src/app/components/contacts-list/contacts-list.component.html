@@ -1,10 +1,14 @@
 <div class="contacts-container">
     <div class="contacts-list">
-        <div class="add-button">
-            <button class="add-contact-button" (click)="addNewContact()">
-                Add new contact
-                <img src="assets/img/contact/person_add.svg" alt="Add Contact" class="add-icon">
-            </button>
+
+        <div><!-- Shardzil, hier ist der botton für deine addNewContact Funktion-->
+            <button class="add-contact-button" (click)="openAddContactDialog()">Add new contact</button>
+            @if (showAddContactDialog) {
+                <app-add-contact 
+                    (close)="closeAddContactDialog()"
+                    (save)="saveContact($event)">
+                </app-add-contact>
+            }
         </div>
 
         <div *ngFor="let group of contactGroups" class="contact-group">

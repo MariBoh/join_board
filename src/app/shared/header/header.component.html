@@ -2,19 +2,19 @@
   <div class="header-container">
     <p class="title" aria-hidden="true">Kanban Project Management Tool</p>
     <div class="header-icons">
-      <button class="btnHelp" aria-label="Hilfe öffnen"></button>
+      <a [routerLink]="['/help']" routerLinkActive="hidden"  class="btnHelp" aria-label="Hilfe öffnen"></a>
       <button
         class="btnHamburgerMenu"
         aria-label="Open menu"
         aria-haspopup="true"
         [attr.aria-expanded]="menuOpen"
-        (click)="toggleMenu()"
+        (click)="toggleMenu()" [ngClass]="{ active: menuOpen}"
       >SM</button>
       <!-- Menü -->
-      <div class="menu" *ngIf="menuOpen">
-        <button (click)="navigateTo('dashboard')">Legal Notice</button>
-        <button (click)="navigateTo('board')">Privacy Policy</button>
-        <button (click)="navigateTo('settings')">Log out</button>
+      <div class="menuOpenHamb" *ngIf="menuOpen">
+        <a [routerLink]="['/legal-notice']" routerLinkActive="active"  class="btnMenu" (click)="toggleMenu()">Legal Notice</a>
+        <a [routerLink]="['/privacy-policy']" routerLinkActive="active"  class="btnMenu" (click)="toggleMenu()">Privacy Policy</a>
+        <a [routerLink]="['/logout']" routerLinkActive="active"  class="btnMenu" (click)="toggleMenu()">Log out</a>
       </div>
     </div>
   </div>

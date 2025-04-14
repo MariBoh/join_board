@@ -1,0 +1,43 @@
+<!-- Desktop Dialog layout -->
+<div class="dialog-overlay" (click)="close.emit()">
+    <section class="container slide-in" (click)="$event.stopPropagation()">
+      <div class="contact-dialog">
+            <div class="left-panel">
+            <div class="logo">
+                <img class="join-ing" src="./../../../../assets/img/contact-dialog/contact-logo.png" alt="">
+                <h2>Add contact</h2>
+                <p>Tasks are better with a team!</p>
+                <img class="vector-line" src="./../../../../assets/img/contact-dialog/Vector 5.png" alt="">
+            </div>
+      </div>
+      <div class="right-panel">
+        <div class="close-btn" (click)="onClose()">X</div>
+
+        <form #contactForm="ngForm" (ngSubmit)="onSubmit()" class="contact-form">
+          <div class="form-body">
+              <div class="avatar"><img src="./../../../../assets/img/contact-dialog/contact-avatar.png" alt="avatar"></div>
+          <div class="form-fields">
+                <div class="input-group">
+                  <input type="text"  [(ngModel)]="contact.name" placeholder="Name" required  name="name"/>
+                  <span><img src="./../../../../assets/img/contact-dialog/person.png" alt=""></span>
+                </div>
+                <div class="input-group">
+                  <input type="email" [(ngModel)]="contact.email" placeholder="Email" required name="email"/>
+                  <span><img src="./../../../../assets/img/contact-dialog/mail.png" alt=""></span>
+                </div>
+                <div class="input-group">
+                  <input type="tel" [(ngModel)]="contact.phone" placeholder="Phone"   name="phone" required/>
+                  <span><img src="./../../../../assets/img/contact-dialog/call.png" alt=""></span>
+                </div>
+                <div class="form-actions">
+                  <button type="button" (click)="onClose()" class="cancel-btn">Cancel ✕</button>
+                  <button type="submit" class="save-btn"  [disabled]="!contactForm.form.valid">Create contact ✔</button>
+                </div>
+          </div>
+          </div>
+        </form>
+
+      </div>
+      </div>
+    </section>
+</div>

@@ -5,9 +5,9 @@
   background-color: $secondary-font;
   color: $primary-font;
   height: 96px;
-  padding-right: 40px;
-  padding-left: 116px;
+  padding: 0 40px 0 116px;
   box-shadow: 0 8px 4px -4px rgba(0, 0, 0, 0.1);
+  position: relative;
 
   .header-container {
     display: flex;
@@ -24,21 +24,15 @@
   }
 
   .header-icons {
-    max-width: 104px;
-    max-height: 56px;
-    gap: 16px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 16px;
+    position: relative;
 
-    button {
+    .btnHelp {
       border: none;
       background-color: transparent;
       cursor: pointer;
-    }
-
-    .btnHelp {
-      position: relative;
       width: 20px;
       height: 20px;
       background: url("/assets/imgs/imgs_story1/help.png") no-repeat center;
@@ -50,6 +44,10 @@
         background-color: rgba(0, 0, 0, 0.1);
         border-radius: 50%;
       }
+
+      &.hidden {
+        display: none;
+      }
     }
 
     .btnHamburgerMenu {
@@ -60,37 +58,52 @@
       color: $link-font;
       font-size: 20px;
       font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       &:hover {
         background-color: $darkblue-transparent;
       }
+
+      &.active {
+        background-color: $darkblue-transparent;
+      }
     }
-  }
-}
 
-/* Menü in Navigation */
+    // Menü direkt innerhalb der Icons platzieren
+    .menuOpenHamb {
+      position: absolute;
+      top: 76px;
+      right: 0px;
+      background-color: $darkblue;
+      color: $nav-button;
+      z-index: 100;
+      border-radius: 20px 0 20px 20px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 
-.menu {
-  position: absolute;
-  top: 96px;
-  right: 45%;
-  background-color: rgba(42, 54, 71, 1);
-  color: $nav-button;
-  z-index: 5;
-  border-radius: 20px 0 20px 20px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  width: auto;
+      .btnMenu {
+        border: none;
+        text-align: left;
+        font-size: 16px;
+        font-family: "Inter", sans-serif;
+        color: $nav-button;
+        padding: 13.5px 19px;
+        border-radius: 8px;
+        width: 100%;
+        height: 46px;
+        border-radius: 8px;
+        cursor: pointer !important;
 
-  button {
-    background-color: transparent;
-    border: none;
-    text-align: center;
-    cursor: pointer;
-    font-size: 16px;
-    font-family: 'Inter';
-    color: $nav-button;
-    padding: 13.5px 19px;
+        &:hover {
+          background-color: $menu-button-hover;
+          cursor: pointer !important;
+        }
+      }
+    }
   }
 }

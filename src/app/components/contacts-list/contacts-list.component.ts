@@ -1,3 +1,5 @@
+
+import { AddContactComponent } from './add-contact/add-contact.component';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Contact } from '../../models/contact.model';
@@ -12,14 +14,34 @@ interface ContactGroup {
 @Component({
   selector: 'app-contacts-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AddContactComponent],
   templateUrl: './contacts-list.component.html',
   styleUrls: ['./contacts-list.component.scss']
 })
 
+  
+
 export class ContactsListComponent implements OnInit {
   contacts: Contact[] = [];
   contactGroups: ContactGroup[] = [];
+
+  showAddContactDialog: boolean = false; //creating a flag
+
+  openAddContactDialog() {
+    this.showAddContactDialog = true;
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeAddContactDialog() {
+    this.showAddContactDialog = false;
+    document.body.style.overflow = '';
+  }
+
+  saveContact(contactData: any) {
+    console.log('Your contact saved', contactData);
+    //backend-code from firebase
+    this.closeAddContactDialog();
+  }
 
   constructor(private contactService: ContactService) { }
 
