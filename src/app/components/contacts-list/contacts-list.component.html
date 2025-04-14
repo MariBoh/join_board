@@ -3,7 +3,13 @@
     <div class="contacts-list">
 
         <div><!-- Shardzil, hier ist der botton für deine addNewContact Funktion-->
-            <button class="add-contact-button">Add new contact</button>
+            <button class="add-contact-button" (click)="openAddContactDialog()">Add new contact</button>
+            @if (showAddContactDialog) {
+                <app-add-contact 
+                    (close)="closeAddContactDialog()"
+                    (save)="saveContact($event)">
+                </app-add-contact>
+            }
         </div>
 
         <div class="contact-group">
