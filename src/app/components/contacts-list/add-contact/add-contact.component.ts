@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Contact } from '../../../interfaces/contact';
 
 @Component({
   selector: 'app-add-contact',
@@ -11,10 +12,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class AddContactComponent {
 
-  @Output() close = new EventEmitter<void>();
-  @Output() save = new EventEmitter<any>();
+  @Output() close = new EventEmitter<void>(); //using void, becouse we are not passing any data
+  @Output() save = new EventEmitter<Contact>();
 
-  contact = {
+  contact: Contact = {
     name: '',
     email: '',
     phone: ''

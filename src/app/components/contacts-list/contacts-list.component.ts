@@ -27,12 +27,14 @@ export class ContactsListComponent implements OnInit {
 
   showAddContactDialog: boolean = false; //creating a flag
 
-   openAddContactDialog() {
-     this.showAddContactDialog = true;
+  openAddContactDialog() {
+    this.showAddContactDialog = true;
+    document.body.style.overflow = 'hidden';
   }
 
   closeAddContactDialog() {
     this.showAddContactDialog = false;
+    document.body.style.overflow = '';
   }
 
   saveContact(contactData: any) {
