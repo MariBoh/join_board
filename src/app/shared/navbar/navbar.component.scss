@@ -95,40 +95,42 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    height: auto;
+    height: 80px;
     width: 100vw;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 12px;
+    @include flex-center(
+      $direction: row,
+      $align: center,
+      $justify: space-between
+    );
     z-index: 2;
 
     .logoAndMenuEl {
-      height: auto;
+      height: 100%;
       width: 100%;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-      gap: 0;
 
       .logo {
         display: none;
       }
 
       .menuElements {
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        gap: 16px;
+        @include flex-center(
+          $direction: row,
+          $align: center,
+          $justify: space-between
+        );
         width: 100%;
-        height: auto;
+        height: 100%;
 
         .nav-link {
+          border-radius: 16px;
+          width: 100%;
           padding: 4px;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          font-size: 12px;
+          @include flex-center(
+            $direction: column,
+            $align: center,
+            $justify: center
+          );
+          font-size: 14px;
 
           img {
             width: 22px;
