@@ -90,7 +90,7 @@
   }
 }
 
-@media (max-width: 963px) {
+@media (max-width: 936px) {
   .navbarContainer {
     @include flex-center($justify: space-between);
     position: fixed;
