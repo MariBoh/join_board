@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Contact } from '../../../interfaces/contact';
+import { FirebaseService } from '../../../services/firebase.service';
 
 @Component({
   selector: 'app-add-contact',
@@ -11,6 +12,7 @@ import { Contact } from '../../../interfaces/contact';
   styleUrl: './add-contact.component.scss'
 })
 export class AddContactComponent {
+  // firebaseService = inject(FirebaseService);
 
   @Output() close = new EventEmitter<void>(); //using void, becouse we are not passing any data
   @Output() save = new EventEmitter<Contact>();

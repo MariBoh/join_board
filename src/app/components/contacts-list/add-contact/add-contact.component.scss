@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center; 
   align-items: center; 
-  z-index: 9999;
+  z-index: 99999;
   overflow: hidden;
 }
 .container {
@@ -287,5 +287,18 @@ input::placeholder {
     top: -325px;
     right: 20px;
     color: white;
+    font-size: 16px;
   }
+    .container.slide-in {
+      transform: translateY(100%);
+      opacity: 0;
+      animation: slideIn 0.4s ease-out forwards;
+}
+  
+    @keyframes slideIn {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+}
+    }
 }

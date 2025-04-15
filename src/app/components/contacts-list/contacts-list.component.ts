@@ -1,9 +1,10 @@
 
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Contact } from '../../models/contact.model';
 import { ContactService } from '../../services/contact.service';
+import { FirebaseService } from '../../services/firebase.service';
 
 
 interface ContactGroup {
@@ -22,10 +23,14 @@ interface ContactGroup {
   
 
 export class ContactsListComponent implements OnInit {
+
+
   contacts: Contact[] = [];
   contactGroups: ContactGroup[] = [];
 
   showAddContactDialog: boolean = false; //creating a flag
+
+  constructor(private contactService: ContactService, public firestore: FirebaseService) { }
 
   openAddContactDialog() {
     this.showAddContactDialog = true;
@@ -40,10 +45,12 @@ export class ContactsListComponent implements OnInit {
   saveContact(contactData: any) {
     console.log('Your contact saved', contactData);
     //backend-code from firebase
+    console.log(this.firestore);
+    
     this.closeAddContactDialog();
   }
 
-  constructor(private contactService: ContactService) { }
+  
 
   ngOnInit(): void {
     this.loadContacts();
