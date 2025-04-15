@@ -62,7 +62,11 @@
   }
 
   .legal {
-    @include flex-center($direction: column, $align: flex-start, $justify: flex-end);
+    @include flex-center(
+      $direction: column,
+      $align: flex-start,
+      $justify: flex-end
+    );
     gap: 4px;
     height: 50%;
     width: 100%;
@@ -84,6 +88,60 @@
         background-color: $deep-space-blue;
         color: $secondary-font;
       }
+    }
+  }
+}
+
+@media (max-width: 963px) {
+  .navbarContainer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: auto;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    z-index: 2;
+
+    .logoAndMenuEl {
+      height: auto;
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      gap: 0;
+
+      .logo {
+        display: none;
+      }
+
+      .menuElements {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+        height: auto;
+
+        .nav-link {
+          padding: 4px;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          font-size: 12px;
+
+          img {
+            width: 22px;
+            height: 22px;
+          }
+        }
+      }
+    }
+
+    .legal {
+      display: none;
     }
   }
 }
