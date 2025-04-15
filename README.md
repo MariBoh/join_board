@@ -34,7 +34,7 @@ JoinBoard ist eine moderne Aufgabenmanagement-App, inspiriert von Tools wie Trel
 | Sprache         | TypeScript         |
 | Styling         | SCSS (BEM-Methodik)|
 | Datenbank       | Firebase Firestore |
-| Hosting         | Firebase Hosting (optional) |
+| Hosting         | Firebase Hosting   |
 | Barrierefreiheit| ARIA-Attribute, Tastaturbedienung |
 | Versionierung   | Git + GitHub       |
 
