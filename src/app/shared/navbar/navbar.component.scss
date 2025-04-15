@@ -10,7 +10,6 @@
   padding: 64px 0;
 
   .logoAndMenuEl {
-    height: 50%;
     width: 100%;
     @include flex-center($direction: column, $align: center);
     gap: 114px;
@@ -68,7 +67,6 @@
       $justify: flex-end
     );
     gap: 4px;
-    height: 50%;
     width: 100%;
 
     a {

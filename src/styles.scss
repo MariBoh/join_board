@@ -1,53 +1,51 @@
 :root {
-    --primary-bg: #ffffff;
-    --secondary-bg: #F6F7F8;
-    --primary-font: black;
-    --secondary-font: #ffffff;
-    --darkblue: #2A3647;
-    --nav-button: #CDCDCD;
-    --privacy-legal: #A8A8A8;
-    --email-font: #007CEE;
-    --light-blue: #29ABE2;
-    --contacts-border: #D1D1D1;
-    --contacs-hover: #F0F0F0;
-
+  --primary-bg: #ffffff;
+  --secondary-bg: #f6f7f8;
+  --primary-font: black;
+  --secondary-font: #ffffff;
+  --darkblue: #2a3647;
+  --nav-button: #cdcdcd;
+  --privacy-legal: #a8a8a8;
+  --email-font: #007cee;
+  --light-blue: #29abe2;
+  --contacts-border: #d1d1d1;
+  --contacs-hover: #f0f0f0;
 }
 
 /* inter-regular - latin */
 @font-face {
-    font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../src/assets/fonts/inter-v18-latin-regular.woff2') format('woff2');
-    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../src/assets/fonts/inter-v18-latin-regular.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 /* inter-700 - latin */
 @font-face {
-    font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    src: url('../src/assets/fonts/inter-v18-latin-700.woff2') format('woff2');
-    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../src/assets/fonts/inter-v18-latin-700.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
-
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    scroll-behavior: smooth;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  scroll-behavior: smooth;
 }
 
 body {
-    max-width: 1920px;
+  max-width: 1920px;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
