@@ -1,20 +1,22 @@
 <div class="contacts-container">
     <div class="contacts-list">
 
-        <div><!-- Shardzil, hier ist der botton für deine addNewContact Funktion-->
-            <button class="add-contact-button" (click)="openAddContactDialog()">Add new contact</button>
+        <div>
+            <button class="add-contact-button" (click)="openAddContactDialog()">Add new contact
+                <img src="assets/img/contact/person_add.svg" alt="Add Contact" class="add-icon">
+            </button>
             @if (showAddContactDialog) {
-                <app-add-contact 
-                    (close)="closeAddContactDialog()"
-                    (save)="saveContact($event)">
-                </app-add-contact>
+            <app-add-contact (close)="closeAddContactDialog()" (save)="saveContact($event)">
+            </app-add-contact>
             }
         </div>
 
-        <div *ngFor="let group of contactGroups" class="contact-group">
+        @for (group of contactGroups; track group.letter) {
+        <div class="contact-group">
             <div class="contact-letter">{{ group.letter }}</div>
             <div class="contact-divider"></div>
-            <div *ngFor="let contact of group.contacts" class="contact-entry">
+            @for (contact of group.contacts; track contact.id) {
+            <div class="contact-entry">
                 <div class="contact-avatar" [style.background-color]="contact.color">
                     {{ contact.initials }}
                 </div>
@@ -23,7 +25,9 @@
                     <div class="contact-email">{{ contact.email }}</div>
                 </div>
             </div>
+            }
         </div>
+        }
     </div>
 
     <div class="contacts-details">
