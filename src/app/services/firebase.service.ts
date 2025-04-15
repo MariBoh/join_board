@@ -1,30 +1,42 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collectionData, collection, doc, onSnapshot } from '@angular/fire/firestore';
+import { Firestore, collectionData, collection, doc, onSnapshot, getDocs } from '@angular/fire/firestore';
+import { ContactService } from './contact.service';
+import { from, map, Observable, of } from 'rxjs';
+import { Contact, generateInitials, generateRandomColor } from '../models/contact.model';
+import { IContact } from '../interfaces/contact';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FirebaseService {
+export class FirebaseService implements ContactService {
 
-  // contacts$;
   firestore: Firestore = inject(Firestore);
-  unsubscribe: () => void;
 
-  constructor() {
-    // this.contacts$ = collectionData(this.getContactsRef());
-    this.unsubscribe = onSnapshot(collection(this.firestore, 'contacts'), (querySnapshot) => {
-      querySnapshot.forEach((element) => {
-        console.log(element.id, element.data());
-        
-      } )
-    })
-   }
-
-  getContactsRef() {
-    return collection(this.firestore, 'contacts');
+  getContacts(): Observable<Contact[]> {
+    return collectionData(collection(this.firestore, 'contacts')).pipe(
+      map((response: any) => {
+        return response.map((item : IContact) => {
+          const contact : Contact = {
+            id: '',
+            name: item.name,
+            email: item.mail,
+            phone: item.phone,
+            color: generateRandomColor(),
+            initials: generateInitials(item.name)
+          };
+          return contact;
+        });
+      })
+    );
   }
 
-  getSingleContactRef(colId:string, docId:string) {
-    return doc(collection(this.firestore, colId), docId);
+  addContact(contact: Omit<Contact, 'id' | 'initials' | 'color'>): Observable<Contact> {
+    const newContact: Contact = {
+                ...contact,
+                id: '42',
+                initials: 'MM',
+                color: 'red'
+            };
+            return of(newContact);
   }
 }
