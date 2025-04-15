@@ -15,6 +15,7 @@
     gap: 16px;
     overflow-y: auto;
     z-index: 1;
+    box-shadow: 8px 0px 4px -4px rgba(0, 0, 0, 0.1);
 }
 
 .add-button {
@@ -160,16 +161,6 @@
         z-index: 2;
     }
 
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: 15px;
-        background: linear-gradient(to right, rgba(0, 0, 0, 0.15) 0%, transparent 100%);
-        z-index: 2;
-    }
 }
 
 .contacts-title-container {
