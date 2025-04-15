@@ -97,12 +97,14 @@
     left: 0;
     height: 80px;
     width: 100vw;
+
     @include flex-center(
       $direction: row,
       $align: center,
       $justify: space-between
     );
-    z-index: 2;
+    padding: 8px 12px;
+    z-index: 4;
 
     .logoAndMenuEl {
       height: 100%;
