@@ -109,3 +109,34 @@
     }
   }
 }
+
+
+
+@media (max-width: 963px) {
+  .header {
+    height: 72px;
+    padding: 0 16px;
+    width: 100vw; // auf volle Breite
+
+    .title {
+      display: none;
+    }
+
+    .btnHelp {
+      display: none;
+    }
+
+    .btnHamburgerMenu {
+      display: flex;
+    }
+
+    // falls Logo hier rein soll:
+    .logoMobile {
+      display: block;
+      width: 40px;
+      height: 40px;
+      background: url('/assets/imgs/imgs_story1/LogoWhite.png') no-repeat center;
+      background-size: contain;
+    }
+  }
+}

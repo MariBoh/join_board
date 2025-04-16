@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Contact } from '../../../interfaces/contact';
-// import { FirebaseService } from '../../../services/firebase.service';
+import { IContact } from '../../../interfaces/contact';
+import { FirebaseService } from '../../../services/firebase.service';
 
 @Component({
   selector: 'app-add-contact',
@@ -15,11 +15,11 @@ export class AddContactComponent {
   // firebaseService = inject(FirebaseService);
 
   @Output() close = new EventEmitter<void>(); //using void, becouse we are not passing any data
-  @Output() save = new EventEmitter<Contact>();
+  @Output() save = new EventEmitter<IContact>();
 
-  contact: Contact = {
+  contact: IContact = {
     name: '',
-    email: '',
+    mail: '',
     phone: ''
   }
 
@@ -29,7 +29,7 @@ export class AddContactComponent {
 
   onSubmit() {
     this.save.emit(this.contact);
-    this.contact ={name: '', email: '', phone: ''} //keeping field empty after submit
+    this.contact ={name: '', mail: '', phone: ''} //keeping field empty after submit
   }
  
 

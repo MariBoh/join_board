@@ -7,7 +7,7 @@ import { ContactService } from './contact.service';
     providedIn: 'root'
 })
 
-export class ContactMockService extends ContactService {
+export class ContactMockService implements ContactService {
     private mockContacts: Contact[] = [
         {
             id: '1',
