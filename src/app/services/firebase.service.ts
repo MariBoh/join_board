@@ -1,3 +1,4 @@
+/* MARIAN I
 import { Injectable, inject, OnDestroy } from '@angular/core';
 import { Firestore, collection, doc, onSnapshot, addDoc, updateDoc, deleteDoc } from '@angular/fire/firestore';
 
@@ -7,10 +8,19 @@ interface FirebaseContact {
   mail: string;
   phone: string;
 }
+*/
+import { Injectable, inject } from '@angular/core';
+import { Firestore, collectionData, collection, doc, onSnapshot, getDocs } from '@angular/fire/firestore';
+import { ContactService } from './contact.service';
+import { from, map, Observable, of } from 'rxjs';
+import { Contact, generateInitials, generateRandomColor } from '../models/contact.model';
+import { IContact } from '../interfaces/contact';
 
 @Injectable({
   providedIn: 'root'
 })
+
+/* MARIAN II
 export class FirebaseService implements OnDestroy {
 
   contacts: FirebaseContact[] = [];
@@ -33,9 +43,41 @@ export class FirebaseService implements OnDestroy {
 
   getSingleContactRef(colId:string, docId:string) {
     return doc(collection(this.firestore, colId), docId);
+*/
+
+export class FirebaseService implements ContactService {
+
+  firestore: Firestore = inject(Firestore);
+
+  getContacts(): Observable<Contact[]> {
+    return collectionData(collection(this.firestore, 'contacts')).pipe(
+      map((response: any) => {
+        return response.map((item : IContact) => {
+          const contact : Contact = {
+            id: '',
+            name: item.name,
+            email: item.mail,
+            phone: item.phone,
+            color: generateRandomColor(),
+            initials: generateInitials(item.name)
+          };
+          return contact;
+        });
+      })
+    );
   }
 
+  addContact(contact: Omit<Contact, 'id' | 'initials' | 'color'>): Observable<Contact> {
+    const newContact: Contact = {
+                ...contact,
+                id: '42',
+                initials: 'MM',
+                color: 'red'
+            };
+            return of(newContact);
+  }
 
+/*
   setContactObject(contact: any, id: string): FirebaseContact {
     return {
       id: id,
@@ -98,5 +140,5 @@ export class FirebaseService implements OnDestroy {
     this.unsubContacts();
   }
 
-
+*/
 }
