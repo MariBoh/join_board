@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Contact } from '../../models/contact.model';
 import { ContactService } from '../../services/contact.service';
-import { FirebaseService } from '../../services/firebase.service';
+// import { FirebaseService } from '../../services/firebase.service';
 
 
 interface ContactGroup {
@@ -20,17 +20,16 @@ interface ContactGroup {
   styleUrls: ['./contacts-list.component.scss']
 })
 
-  
-
 export class ContactsListComponent implements OnInit {
-
 
   contacts: Contact[] = [];
   contactGroups: ContactGroup[] = [];
 
   showAddContactDialog: boolean = false; //creating a flag
 
-  constructor(private contactService: ContactService, public firestore: FirebaseService) { }
+  // firebaseService = inject(FirebaseService);
+
+  constructor(private contactService: ContactService) { }
 
   openAddContactDialog() {
     this.showAddContactDialog = true;
@@ -44,16 +43,13 @@ export class ContactsListComponent implements OnInit {
 
   saveContact(contactData: any) {
     console.log('Your contact saved', contactData);
-    //backend-code from firebase
-    console.log(this.firestore);
-    
+    // this.firebaseService.addNewConatactRef(contactData)
     this.closeAddContactDialog();
   }
 
-  
-
   ngOnInit(): void {
     this.loadContacts();
+    // console.log('clicked');
   }
 
   loadContacts(): void {

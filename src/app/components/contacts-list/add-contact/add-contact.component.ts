@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Contact } from '../../../interfaces/contact';
-import { FirebaseService } from '../../../services/firebase.service';
+// import { FirebaseService } from '../../../services/firebase.service';
 
 @Component({
   selector: 'app-add-contact',

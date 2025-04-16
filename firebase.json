@@ -1,1 +1,9 @@
-{}
+{
+  "hosting": [
+    {
+      "target": "join-dac11",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
