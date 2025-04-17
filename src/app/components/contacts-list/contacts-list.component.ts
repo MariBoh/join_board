@@ -17,10 +17,7 @@ interface ContactGroup {
   styleUrls: ['./contacts-list.component.scss']
 })
 
-  
-
 export class ContactsListComponent implements OnInit {
-
 
   contacts: Contact[] = [];
   contactGroups: ContactGroup[] = [];
@@ -46,10 +43,9 @@ export class ContactsListComponent implements OnInit {
     this.closeAddContactDialog();
   }
 
-  
-
   ngOnInit(): void {
     this.loadContacts();
+    // console.log('clicked');
   }
 
   loadContacts(): void {
