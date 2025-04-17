@@ -12,7 +12,7 @@ export class ContactMockService implements ContactService {
         {
             id: '1',
             name: 'Albert Einstein',
-            email: 'albert@example.com',
+            mail: 'albert@example.com',
             phone: '+123456789',
             color: '#3f51b5',
             initials: 'AE'
@@ -20,7 +20,7 @@ export class ContactMockService implements ContactService {
         {
             id: '2',
             name: 'Eva Braun',
-            email: 'eva@example.com',
+            mail: 'eva@example.com',
             phone: '+987654321',
             color: '#ff4081',
             initials: 'EB'
@@ -28,7 +28,7 @@ export class ContactMockService implements ContactService {
         {
             id: '3',
             name: 'Frederick Smith',
-            email: 'frederick@example.com',
+            mail: 'frederick@example.com',
             phone: '+1122334455',
             color: '#4caf50',
             initials: 'FS'
@@ -36,7 +36,7 @@ export class ContactMockService implements ContactService {
         {
             id: '4',
             name: 'Lukas Schneider',
-            email: 'lukas.schneider@example.com',
+            mail: 'lukas.schneider@example.com',
             phone: '+4915112345678',
             color: '#9c27b0',
             initials: 'LS'
@@ -44,7 +44,7 @@ export class ContactMockService implements ContactService {
         {
             id: '5',
             name: 'Anika Müller',
-            email: 'anika.mueller@example.com',
+            mail: 'anika.mueller@example.com',
             phone: '+4917623456789',
             color: '#009688',
             initials: 'AM'
@@ -52,7 +52,7 @@ export class ContactMockService implements ContactService {
         {
             id: '6',
             name: 'Johannes Becker',
-            email: 'johannes.becker@example.com',
+            mail: 'johannes.becker@example.com',
             phone: '+491701234567',
             color: '#ff9800',
             initials: 'JB'
@@ -60,7 +60,7 @@ export class ContactMockService implements ContactService {
         {
             id: '7',
             name: 'Clara Vogel',
-            email: 'clara.vogel@example.com',
+            mail: 'clara.vogel@example.com',
             phone: '+491521234567',
             color: '#795548',
             initials: 'CV'
@@ -68,7 +68,7 @@ export class ContactMockService implements ContactService {
         {
             id: '8',
             name: 'Zorro Oncepiece',
-            email: 'zorro@example.com',
+            mail: 'zorro@example.com',
             phone: '+49548834567',
             color: '#795748',
             initials: 'ZO'

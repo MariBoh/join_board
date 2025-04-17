@@ -65,7 +65,7 @@ export class FirebaseService implements ContactService {
           const contact : Contact = {
             id: '',
             name: item.name,
-            email: item.mail,
+            mail: item.mail,
             phone: item.phone,
             color: generateRandomColor(),
             initials: generateInitials(item.name)

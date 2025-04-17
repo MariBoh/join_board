@@ -12,9 +12,8 @@ import { FirebaseService } from '../../../services/firebase.service';
   styleUrl: './add-contact.component.scss'
 })
 export class AddContactComponent {
-  // firebaseService = inject(FirebaseService);
 
-  @Output() close = new EventEmitter<void>(); //using void, becouse we are not passing any data
+  @Output() close = new EventEmitter<void>(); 
   @Output() save = new EventEmitter<IContact>();
 
   contact: IContact = {

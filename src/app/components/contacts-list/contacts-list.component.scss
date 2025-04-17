@@ -187,3 +187,13 @@
     letter-spacing: 0%;
     color: var(--primary-font);
 }
+.edit-del-btn{
+    display: flex;
+    gap: 10px;
+    button{
+        color: white;
+        background-color: blue;
+        width: 50px;
+        pad: 10px;
+    }
+}
