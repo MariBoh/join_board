@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-//import { FirebaseService } from '../../services/firebase.service';
+import { FirebaseService } from '../../services/firebase.service';
 import { FormsModule } from '@angular/forms';
 
 
@@ -27,7 +27,7 @@ export class SummaryComponent {
     phone: '',
   };
 
-/*
+/* */
   constructor(public firebaseService: FirebaseService){
 
   }
@@ -69,5 +69,5 @@ export class SummaryComponent {
     this.firebaseService.deleteContactInFirebase(this.contactId);
   }
 }
-*/
+
 }

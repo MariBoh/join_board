@@ -1,10 +1,7 @@
-<!--
+<!-- -->
 <h2>Kontakte anzeigen und bearbeiten</h2>
 
 @for (item of firebaseService.contacts; track $index) {
-      
-    <p class="contact-card">{{ item.name }} - {{ item.mail }} - {{ item.id }}</p>
-    
     <div>
         <input class="contact-card" [(ngModel)]= "item.name" type="text" value="{{ item.name }}">
         <input class="contact-card" [(ngModel)]= "item.mail" type="text" value="{{ item.mail }}">
@@ -12,7 +9,6 @@
         <button (click)="saveEditedContactFormToFirebase($index)">Save Contact</button>
         <button (click)="deleteContactFromFirebase($index)">Delete Contact</button>
     </div>
-    
 }
 
 <br>
@@ -28,4 +24,3 @@
 <br>
 <br>
 <button (click)="addContactFormToFirebase()">Add Contact</button>
--->
