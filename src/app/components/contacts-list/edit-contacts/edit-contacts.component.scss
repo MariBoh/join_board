@@ -302,3 +302,22 @@ input::placeholder {
     }
   }
 }
+@media screen and (max-width: 450px) {
+  .contact-dialog {
+    width: 300px;
+  }
+  h2{
+    font-size: 36px !important;
+  }
+  .left-panel{
+    padding: 0px 20px 0px;
+    height: 281px;
+  }
+  .left-panel p {
+    font-size: 16px;
+  }
+  .close-btn{
+    top: -260px;
+    right: 25px;
+  }
+}
