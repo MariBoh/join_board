@@ -6,7 +6,7 @@
                 <img src="assets/img/contact/person_add.svg" alt="Add Contact" class="add-icon">
             </button>
             @if (showAddContactDialog) {
-            <app-add-contact (close)="closeAddContactDialog()" (save)="saveContact($event)">
+            <app-add-contact (close)="closeAddContactDialog()" (save)="saveNewContact($event)">
             </app-add-contact>
             }
         </div>
@@ -48,7 +48,7 @@
             <app-edit-contacts
                 [contact]="selectedContact"
                 (close)="closeEditContactDialog()"
-                (save)="updateContact($event)"
+                (save)="editContact($event)"
                 (delete)="deleteContact($event)">
             </app-edit-contacts>
         }

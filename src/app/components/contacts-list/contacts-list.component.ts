@@ -24,7 +24,6 @@ export class ContactsListComponent implements OnInit {
 
   contacts: Contact[] = [];
   contactGroups: ContactGroup[] = [];
-
   showAddContactDialog: boolean = false;
   showEditContactDialog = false;
   selectedContact!: IContact | null;
@@ -53,14 +52,14 @@ export class ContactsListComponent implements OnInit {
     document.body.style.overflow = '';
   }
 
-  saveContact(contactData: any) {
+  saveNewContact(contactData: any) {
     console.log('Your contact saved', contactData);
     //backend-code from firebase
     
     this.closeAddContactDialog();
   }
 
-   updateContact(contactData: IContact) {
+   editContact(contactData: IContact) {
     console.log('Contact updated:', contactData);
     // update to backend here...
     this.closeEditContactDialog();
