@@ -5,6 +5,7 @@
     display: flex;
     height: calc(100vh - 96px);
     width: 100%;
+    position: relative;
 }
 
 .contacts-list {
@@ -93,10 +94,23 @@
     align-items: center;
     gap: 35px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
 
     &:hover {
         background-color: #f0f0f0;
+    }
+
+    &.selected {
+        background-color: var(--darkblue);
+        color: var(--secondary-font);
+
+        .contact-email {
+            color: var(--secondary-font);
+        }
+
+        .contact-avatar {
+            border: 2px solid var(--secondary-font);
+        }
     }
 }
 
@@ -112,6 +126,7 @@
     font-weight: 400;
     font-size: 12px;
     color: var(--secondary-font);
+    transition: all 0.2s;
 }
 
 .contact-info {
@@ -130,7 +145,6 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     letter-spacing: 0%;
-    color: var(--primary-font);
 }
 
 .contact-email {
@@ -153,11 +167,6 @@
     width: calc(1920px - 232px - 456px);
     min-width: calc(1920px - 232px - 456px);
     max-width: calc(1920px - 232px - 456px);
-
-    &::before {
-        content: none;
-    }
-
 }
 
 .contacts-title-container {
@@ -187,13 +196,146 @@
     letter-spacing: 0%;
     color: var(--primary-font);
 }
-.edit-del-btn{
-    display: flex;
-    gap: 10px;
-    button{
-        color: white;
-        background-color: blue;
-        width: 50px;
-        pad: 10px;
+
+.contact-details-panel {
+    position: absolute;
+    right: 0;
+    width: 461px;
+    height: 364px;
+    background-color: var(--secondary-bg);
+    padding: 40px;
+    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+
+    &.slide-in {
+        transform: translateX(100%);
+        opacity: 0;
+        animation: slideIn 0.4s ease-out forwards;
+    }
+
+    @keyframes slideIn {
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    .details-top {
+        display: flex;
+        gap: 54px;
+        align-items: center;
+    }
+
+    .details-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--secondary-font);
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 47px;
+        border: 3px solid var(--secondary-font);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .details-name-section {
+        width: 287px;
+        height: 88px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .details-name {
+        width: 284px;
+        height: 56px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 47px;
+        color: var(--primary-font);
+    }
+
+    .details-actions {
+        display: flex;
+        gap: 16px;
+    }
+
+    .action-button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: none;
+        border: none;
+        font-family: 'Inter', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        color: var(--darkblue);
+        cursor: pointer;
+        padding: 0;
+
+        img {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    .details-contact-info {
+        margin: 16px 0 59px;
+        width: 207px;
+        height: 74px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Inter', sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+        color: var(--primary-font);
+        border-bottom: 1px solid var(--contacts-border);
+    }
+
+    .details-contact-methods {
+        width: 180px;
+        height: 128px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+    }
+
+    .contact-method {
+        .method-label {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--primary-font);
+            margin-bottom: 8px;
+        }
+
+        .method-value {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: var(--email-font);
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+                color: var(--light-blue);
+            }
+        }
+
+        .edit-del-btn {
+            display: flex;
+            gap: 10px;
+
+            button {
+                color: white;
+                background-color: blue;
+                width: 50px;
+                pad: 10px;
+            }
+        }
     }
 }

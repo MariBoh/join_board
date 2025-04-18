@@ -1,4 +1,3 @@
-
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
