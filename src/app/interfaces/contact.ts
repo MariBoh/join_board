@@ -1,5 +1,5 @@
 export interface IContact {
-  id?: string;
+  id?: string; // hat Marian ergänzt
   name: string;
   mail: string;
   phone: string;
