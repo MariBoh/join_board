@@ -22,7 +22,7 @@
                 </div>
                 <div class="contact-info">
                     <div class="contact-name">{{ contact.name }}</div>
-                    <div class="contact-email">{{ contact.email }}</div>
+                    <div class="contact-email">{{ contact.mail }}</div>
                 </div>
             </div>
             }
@@ -36,5 +36,22 @@
             <div class="title-divider"></div>
             <h2 class="contacts-subtitle">Better with a team</h2>
         </div>
+        
+        @for (contact of contacts; track contact.id) {
+            <div class="edit-del-btn">
+                <button (click)="openEditContactDialog(contact)">edit</button>
+                <button>del</button>
+            </div>
+        }
+
+        @if (selectedContact) {
+            <app-edit-contacts
+                [contact]="selectedContact"
+                (close)="closeEditContactDialog()"
+                (save)="updateContact($event)"
+                (delete)="deleteContact($event)">
+            </app-edit-contacts>
+        }
+            
     </div>
 </div>

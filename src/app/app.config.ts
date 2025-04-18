@@ -72,7 +72,6 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 
 import { ContactService } from './services/contact.service';
-import { ContactMockService } from './services/contact.mock.service';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
