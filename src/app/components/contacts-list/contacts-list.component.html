@@ -1,22 +1,23 @@
 <div class="contacts-container">
     <div class="contacts-list">
+        <button class="add-contact-button" (click)="openAddContactDialog()">
+            Add new contact
+            <img src="assets/img/contact/person_add.svg" alt="Add Contact" class="add-icon">
+        </button>
 
-        <div>
-            <button class="add-contact-button" (click)="openAddContactDialog()">Add new contact
-                <img src="assets/img/contact/person_add.svg" alt="Add Contact" class="add-icon">
-            </button>
-            @if (showAddContactDialog) {
-            <app-add-contact (close)="closeAddContactDialog()" (save)="saveNewContact($event)">
-            </app-add-contact>
-            }
-        </div>
+        @if (showAddContactDialog) {
+        <app-add-contact (close)="closeAddContactDialog()" (save)="saveNewContact($event)">
+        </app-add-contact>
+        }
 
         @for (group of contactGroups; track group.letter) {
         <div class="contact-group">
             <div class="contact-letter">{{ group.letter }}</div>
             <div class="contact-divider"></div>
+
             @for (contact of group.contacts; track contact.id) {
-            <div class="contact-entry">
+            <div class="contact-entry" (click)="selectContact(contact)"
+                [ngClass]="{ selected: selectedContact === contact }">
                 <div class="contact-avatar" [style.background-color]="contact.color">
                     {{ contact.initials }}
                 </div>
@@ -36,22 +37,45 @@
             <div class="title-divider"></div>
             <h2 class="contacts-subtitle">Better with a team</h2>
         </div>
-        
-        @for (contact of contacts; track contact.id) {
-            <div class="edit-del-btn">
-                <button (click)="openEditContactDialog(contact)">edit</button>
-                <button>del</button>
-            </div>
-        }
 
         @if (selectedContact) {
-            <app-edit-contacts
-                [contact]="selectedContact"
-                (close)="closeEditContactDialog()"
-                (save)="editContact($event)"
-                (delete)="deleteContact($event)">
-            </app-edit-contacts>
+        <div class="contact-details-panel slide-in" (click)="$event.stopPropagation()">
+            <div class="details-top">
+                <div class="details-avatar" [style.background-color]="selectedContact.color">
+                    {{ selectedContact.initials }}
+                </div>
+                <div class="details-name-section">
+                    <div class="details-name">{{ selectedContact.name }}</div>
+                    <div class="details-actions">
+                        <button class="action-button" (click)="openEditContactDialog(selectedContact)">
+                            <img src="assets/img/contact/edit.svg" alt="">Edit
+                        </button>
+                        <button class="action-button" (click)="deleteContact(selectedContact)">
+                            <img src="assets/img/contact/delete.svg" alt="">Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="details-contact-info">Contact Information</div>
+
+            <div class="details-contact-methods">
+                <div class="contact-method">
+                    <div class="method-label">Email</div>
+                    <a class="method-value" [href]="'mailto:' + selectedContact.mail">{{ selectedContact.mail }}</a>
+                </div>
+                <div class="contact-method">
+                    <div class="method-label">Phone</div>
+                    <a class="method-value" [href]="'tel:' + selectedContact.phone">{{ selectedContact.phone }}</a>
+                </div>
+            </div>
+        </div>
         }
-            
+
+        @if (showEditContactDialog) {
+        <app-edit-contacts [contact]="selectedContact!" (close)="closeEditContactDialog()" (save)="editContact($event)"
+            (delete)="deleteContact($event)">
+        </app-edit-contacts>
+        }
     </div>
 </div>

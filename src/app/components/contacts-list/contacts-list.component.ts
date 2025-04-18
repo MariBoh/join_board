@@ -25,7 +25,7 @@ export class ContactsListComponent implements OnInit {
   contactGroups: ContactGroup[] = [];
   showAddContactDialog: boolean = false;
   showEditContactDialog = false;
-  selectedContact!: IContact | null;
+  selectedContact: Contact | null = null;
 
   constructor(private contactService: ContactService) { }
 
@@ -39,13 +39,18 @@ export class ContactsListComponent implements OnInit {
     document.body.style.overflow = '';
   }
 
-  openEditContactDialog(contact: IContact) {
+  selectContact(contact: Contact) {
+    this.selectedContact = this.selectedContact === contact ? null : contact;
+    this.showEditContactDialog = false;
+  }
+
+  openEditContactDialog(contact: Contact) {
     this.selectedContact = contact;
     this.showEditContactDialog = true;
     document.body.style.overflow = 'hidden';
   }
 
-   closeEditContactDialog() {
+  closeEditContactDialog() {
     this.selectedContact = null;
     this.showEditContactDialog = false;
     document.body.style.overflow = '';
@@ -54,11 +59,11 @@ export class ContactsListComponent implements OnInit {
   saveNewContact(contactData: any) {
     console.log('Your contact saved', contactData);
     //backend-code from firebase
-    
+
     this.closeAddContactDialog();
   }
 
-   editContact(contactData: IContact) {
+  editContact(contactData: IContact) {
     console.log('Contact updated:', contactData);
     // update to backend here...
     this.closeEditContactDialog();
@@ -98,13 +103,4 @@ export class ContactsListComponent implements OnInit {
       .map(([letter, contacts]) => ({ letter, contacts }));
   }
 
-  addNewContact(): void {
-    this.contactService.addContact({
-      name: 'New Contact',
-      mail: 'new@example.com',
-      phone: '+49123456789'
-    }).subscribe(newContact => {
-      this.loadContacts();
-    });
-  }
 }
