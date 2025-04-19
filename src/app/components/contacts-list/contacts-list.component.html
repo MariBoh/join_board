@@ -5,6 +5,10 @@
             <img src="assets/img/contact/person_add.svg" alt="Add Contact" class="add-icon">
         </button>
 
+        <button class="alt-add-contact" (click)="openAddContactDialog()">
+            <img src="assets/img/contact/person_add.svg" alt="Add Contact">
+        </button>
+
         @if (showAddContactDialog) {
         <app-add-contact (close)="closeAddContactDialog()" (save)="saveNewContact($event)">
         </app-add-contact>
@@ -32,7 +36,7 @@
     </div>
 
     <div class="contacts-details">
-        <div class="contacts-title-container">
+        <div class="contacts-title-container responsive">
             <h1 class="contacts-title">Contacts</h1>
             <div class="title-divider"></div>
             <h2 class="contacts-subtitle">Better with a team</h2>
@@ -44,6 +48,7 @@
                 <div class="details-avatar" [style.background-color]="selectedContact.color">
                     {{ selectedContact.initials }}
                 </div>
+
                 <div class="details-name-section">
                     <div class="details-name">{{ selectedContact.name }}</div>
                     <div class="details-actions">
@@ -55,6 +60,10 @@
                         </button>
                     </div>
                 </div>
+
+                <button class="alt-options-button" (click)="toggleOptionsMenu()">
+                    <img src="assets/img/contact/mobile-menu.svg" alt="Options">
+                </button>
             </div>
 
             <div class="details-contact-info">Contact Information</div>

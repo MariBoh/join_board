@@ -26,6 +26,7 @@ export class ContactsListComponent implements OnInit {
   showAddContactDialog: boolean = false;
   showEditContactDialog = false;
   selectedContact: Contact | null = null;
+  showMobileOptions = false;
 
   constructor(private contactService: ContactService) { }
 
@@ -42,6 +43,8 @@ export class ContactsListComponent implements OnInit {
   selectContact(contact: Contact) {
     this.selectedContact = this.selectedContact === contact ? null : contact;
     this.showEditContactDialog = false;
+    this.showMobileOptions = false;
+
   }
 
   openEditContactDialog(contact: Contact) {
@@ -101,6 +104,10 @@ export class ContactsListComponent implements OnInit {
     this.contactGroups = Array.from(groupsMap.entries())
       .sort(([letterA], [letterB]) => letterA.localeCompare(letterB))
       .map(([letter, contacts]) => ({ letter, contacts }));
+  }
+
+  toggleOptionsMenu() {
+    this.showMobileOptions = !this.showMobileOptions;
   }
 
 }
