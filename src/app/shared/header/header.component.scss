@@ -10,8 +10,10 @@
   position: relative;
   z-index: 2;
   width: calc(100vw - clamp(180px, 16.1vw, 232px));
-  //width: 100vw;
 
+  .logoMedia {
+    display: none;
+  }
 
   .header-container {
     display: flex;
@@ -114,13 +116,25 @@
   }
 }
 
-
-/* 
-@media (max-width: 963px) {
+@media (max-width: 936px) {
   .header {
     height: 72px;
     padding: 0 16px;
-    width: 100vw; // auf volle Breite
+    width: 100vw;
+    z-index: 3;
+
+    .header-container {
+      padding: 0;
+    }
+
+    .logoMedia {
+      display: block;
+
+      .imgLogoMedia {
+        width: 32px;
+        height: 39.02px;
+      }
+    }
 
     .title {
       display: none;
@@ -144,4 +158,3 @@
     }
   }
 }
- */
