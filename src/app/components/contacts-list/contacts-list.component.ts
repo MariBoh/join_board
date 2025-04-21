@@ -1,6 +1,6 @@
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, HostListener } from '@angular/core';
 import { Contact } from '../../models/contact.model';
 import { ContactService } from '../../services/contact.service';
 import { EditContactsComponent } from './edit-contacts/edit-contacts.component';
@@ -78,19 +78,19 @@ export class ContactsListComponent implements OnInit {
     this.closeEditContactDialog();
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.loadContacts();
     // console.log('clicked');
   }
 
-  loadContacts(): void {
+  loadContacts() {
     this.contactService.getContacts().subscribe(contacts => {
       this.contacts = contacts;
       this.groupContactsByFirstLetter();
     });
   }
 
-  groupContactsByFirstLetter(): void {
+  groupContactsByFirstLetter() {
     const groupsMap = new Map<string, Contact[]>();
 
     this.contacts.forEach(contact => {
@@ -106,8 +106,15 @@ export class ContactsListComponent implements OnInit {
       .map(([letter, contacts]) => ({ letter, contacts }));
   }
 
-  toggleOptionsMenu() {
+  toggleMobileOptionsMenu() {
     this.showMobileOptions = !this.showMobileOptions;
+  }
+
+  @HostListener('document:click', ['$event'])
+  menuClick(event: MouseEvent) {
+    const inside = (event.target as HTMLElement).closest('.options-wrapper');
+
+    if (!inside) this.showMobileOptions = false;
   }
 
 }
