@@ -3,6 +3,7 @@ import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IContact } from '../../../interfaces/contact';
 import { FirebaseService } from '../../../services/firebase.service';
+import { generateRandomColor } from '../../../models/contact.model';
 
 @Component({
   selector: 'app-add-contact',
@@ -12,15 +13,15 @@ import { FirebaseService } from '../../../services/firebase.service';
   styleUrl: './add-contact.component.scss'
 })
 export class AddContactComponent {
-  // firebaseService = inject(FirebaseService);
 
-  @Output() close = new EventEmitter<void>(); //using void, becouse we are not passing any data
+  @Output() close = new EventEmitter<void>(); 
   @Output() save = new EventEmitter<IContact>();
 
   contact: IContact = {
     name: '',
     mail: '',
-    phone: ''
+    phone: '',
+    color: generateRandomColor(),
   }
 
   onClose() {
@@ -29,7 +30,7 @@ export class AddContactComponent {
 
   onSubmit() {
     this.save.emit(this.contact);
-    this.contact ={name: '', mail: '', phone: ''} //keeping field empty after submit
+    this.contact ={name: '', mail: '', phone: '', color: generateRandomColor()} //keeping field empty after submit
   }
  
 
