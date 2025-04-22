@@ -110,6 +110,12 @@ export class ContactsListComponent implements OnInit {
     this.showMobileOptions = !this.showMobileOptions;
   }
 
+  goBack() {
+    this.selectedContact = null;
+    this.showEditContactDialog = false;
+    this.showMobileOptions = false;
+  }
+
   @HostListener('document:click', ['$event'])
   menuClick(event: MouseEvent) {
     const inside = (event.target as HTMLElement).closest('.options-wrapper');
