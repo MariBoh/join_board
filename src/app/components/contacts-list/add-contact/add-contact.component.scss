@@ -125,13 +125,20 @@
 }
 
 .input-group {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   display: flex;
   align-items: center;
   background: #f6f6f6;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 0 10px;
+}
+.error-msg {
+  margin-top: -18px;
+}
+.error-msg span {
+  color: red;
+  font-size: 14px;
 }
 
 .input-group input {
@@ -269,6 +276,8 @@ input::placeholder {
 
   .input-group {
     width: 100%;
+    position: relative;
+    margin-bottom: 20px;
   }
 
   .form-actions {
@@ -304,7 +313,7 @@ input::placeholder {
 }
 @media screen and (max-width: 450px) {
   .contact-dialog {
-    width: 300px;
+  height: 100%;
   }
   h2 {
     font-size: 36px !important;
