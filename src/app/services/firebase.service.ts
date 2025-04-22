@@ -1,21 +1,5 @@
-/* MARIAN I
-import { Injectable, inject, OnDestroy } from '@angular/core';
-import { Firestore, collection, doc, onSnapshot, addDoc, updateDoc, deleteDoc } from '@angular/fire/firestore';
-
-interface FirebaseContact {
-  id?: string;
-  name: string;
-  mail: string;
-  phone: string;
-}
-*/
-
-//Valeriya
-//import { Injectable, inject } from '@angular/core';
-//import { Firestore, collectionData, collection, doc, onSnapshot, getDocs } from '@angular/fire/firestore';
 import { Injectable, inject, OnDestroy } from '@angular/core';
 import { Firestore, collection, collectionData, doc, onSnapshot, addDoc, updateDoc, deleteDoc } from '@angular/fire/firestore';
-
 import { ContactService } from './contact.service';
 import { from, map, Observable, of } from 'rxjs';
 import { Contact, generateInitials, generateRandomColor } from '../models/contact.model';
@@ -25,39 +9,19 @@ import { IContact } from '../interfaces/contact';
   providedIn: 'root'
 })
 
-/* MARIAN II
-export class FirebaseService implements OnDestroy {
-
-  contacts: FirebaseContact[] = [];
-
-  unsubContacts;
-
-  firestore: Firestore = inject(Firestore);
-
-
-  constructor() {
-    this.unsubContacts = this.subContacts();
-
-  }
-
-
-
-*/
-
-//TEST
-//TEST 
-
-//VALERIYA II
 export class FirebaseService implements ContactService {
 
   firestore: Firestore = inject(Firestore);
+
 
   //MARIAN 4 Lines
   contacts: IContact[] = [];
   unsubContacts;
   constructor() {
     this.unsubContacts = this.subContacts();}
+  
 
+  //VALERIYA
   getContacts(): Observable<Contact[]> {
     return collectionData(collection(this.firestore, 'contacts')).pipe(
       map((response: any) => {
@@ -76,39 +40,6 @@ export class FirebaseService implements ContactService {
     );
   }
 
-  addContact(contact: Omit<Contact, 'id' | 'initials' | 'color'>): Observable<Contact> {
-    const newContact: Contact = {
-                ...contact,
-                id: '42',
-                initials: 'MM',
-                color: 'red'
-            };
-            return of(newContact);
-  }
-
-
-
-// MARIAN III
-
-getContactsRef(colId:string) {
-  return collection(this.firestore, colId);
-}
-
-
-getSingleContactRef(colId:string, docId:string) {
-  return doc(collection(this.firestore, colId), docId);
-}
-  
-setContactObject(contact: any, id: string): IContact {
-    return {
-      id: id,
-      name: contact.name || "",
-      mail: contact.mail || "",
-      phone: contact.phone || "",
-    }
-  }
-
-
 
 subContacts() {
   return onSnapshot(this.getContactsRef('contacts'), (contactList) => {
@@ -121,6 +52,48 @@ subContacts() {
 }
 
 
+  addContact(contact: Omit<Contact, 'id' | 'initials' | 'color'>): Observable<Contact> {
+    const newContact: Contact = {
+                ...contact,
+                id: '42',
+                initials: 'MM',
+                color: 'red'
+            };
+            return of(newContact);
+  }
+
+
+  //MARIAN Functions
+  getContactsRef(colId:string) {
+    return collection(this.firestore, colId);
+  }
+
+
+  getSingleContactRef(colId:string, docId:string) {
+    return doc(collection(this.firestore, colId), docId);
+  }
+  
+  // setContactObject(data: any, id: string): Contact {
+  //   return {
+  //     id,
+  //     name: data.name,
+  //     email: data.mail,
+  //     phone: data.phone,
+  //     color: generateRandomColor(),
+  //     initials: generateInitials(data.name),
+  //   };
+  // }
+
+  setContactObject(contact: any, id: string): IContact {
+      return {
+        id: id,
+        name: contact.name || "",
+        mail: contact.mail || "",
+        phone: contact.phone || "",
+      }
+    }
+
+
   async addContactToFirebase(newContact: IContact){
     await addDoc(this.getContactsRef('contacts'), newContact).catch(
       (err) => { console.error(err); }
@@ -128,7 +101,7 @@ subContacts() {
       (docRef) => { console.log("Document written with ID: ", docRef?.id); }
     )
   }
-
+ 
 
   getCleanJson(changedContact: IContact){
     return {
@@ -156,8 +129,8 @@ subContacts() {
     }
   }
 
-   //Lifecycle Hooks eigentlich nicht in service.ts
 
+  //Lifecycle Hooks eigentlich nicht in service.ts
   ngOnDestroy() {
     this.unsubContacts();
   }
@@ -165,23 +138,22 @@ subContacts() {
 
 }
 
-
 /*
-getContacts(): Observable<Contact[]> {
-  return collectionData(collection(this.firestore, 'contacts')).pipe(
-    map((response: any) => {
-      return response.map((item : IContact) => {
-        const contact : Contact = {
-          id: '',
-          name: item.name,
-          email: item.mail,
-          phone: item.phone,
-          color: generateRandomColor(),
-          initials: generateInitials(item.name)
-        };
-        return contact;
-      });
-    })
-  );
-}
-*/
+  getContacts(): Observable<Contact[]> {
+    return collectionData(collection(this.firestore, 'contacts')).pipe(
+      map((response: any) => {
+        return response.map((item : IContact) => {
+          const contact : Contact = {
+            id: '',
+            name: item.name,
+            email: item.mail,
+            phone: item.phone,
+            color: generateRandomColor(),
+            initials: generateInitials(item.name)
+          };
+          return contact;
+        });
+      })
+    );
+  }
+    */

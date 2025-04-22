@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Contact } from '../../models/contact.model';
 import { ContactService } from '../../services/contact.service';
+import { FirebaseService } from '../../services/firebase.service';
+
 interface ContactGroup {
   letter: string;
   contacts: Contact[];
@@ -24,7 +26,10 @@ export class ContactsListComponent implements OnInit {
 
   showAddContactDialog: boolean = false; //creating a flag
 
-  constructor(private contactService: ContactService) { }
+  constructor(
+    private contactService: ContactService,
+    private firebaseService: FirebaseService,
+  ) { }
 
   openAddContactDialog() {
     this.showAddContactDialog = true;

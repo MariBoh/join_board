@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
 import { FormsModule } from '@angular/forms';
@@ -10,10 +11,10 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.scss'
 })
+
+
 export class SummaryComponent {
   contact = {};
-
-
 
   name = "";
   mail = "";
@@ -27,7 +28,7 @@ export class SummaryComponent {
     phone: '',
   };
 
-/* */
+
   constructor(public firebaseService: FirebaseService){
 
   }
