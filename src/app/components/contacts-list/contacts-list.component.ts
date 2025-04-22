@@ -27,6 +27,9 @@ export class ContactsListComponent implements OnInit {
   showEditContactDialog = false;
   selectedContact: Contact | null = null;
   showMobileOptions = false;
+  showSuccessMsgDialog: boolean = false;
+  showSuccessMsg: string = '';
+  dialogState: 'show' | 'hide' = 'show';
 
   constructor(private contactService: ContactService) { }
 
@@ -38,13 +41,27 @@ export class ContactsListComponent implements OnInit {
   closeAddContactDialog() {
     this.showAddContactDialog = false;
     document.body.style.overflow = '';
+    this.showSuccessMsgDialog = false; 
+  }
+
+  openSuccessDialog(message: string) {
+    this.showSuccessMsg = message; 
+    this.dialogState = 'show';
+    this.showSuccessMsgDialog = true;
+
+    setTimeout(() => {
+      this.dialogState = 'hide';
+    }, 2000);
+
+    setTimeout(() => {
+      this.showSuccessMsgDialog = false;
+    }, 2400);
   }
 
   selectContact(contact: Contact) {
     this.selectedContact = this.selectedContact === contact ? null : contact;
     this.showEditContactDialog = false;
     this.showMobileOptions = false;
-
   }
 
   openEditContactDialog(contact: Contact) {
@@ -57,6 +74,7 @@ export class ContactsListComponent implements OnInit {
     this.selectedContact = null;
     this.showEditContactDialog = false;
     document.body.style.overflow = '';
+    this.showSuccessMsgDialog = false; //when just closing dialog, no need to this dialog message
   }
 
   saveNewContact(contactData: any) {
@@ -64,18 +82,21 @@ export class ContactsListComponent implements OnInit {
     //backend-code from firebase
 
     this.closeAddContactDialog();
+    this.openSuccessDialog('You have added a new Contact');
   }
 
   editContact(contactData: IContact) {
     console.log('Contact updated:', contactData);
     // update to backend here...
     this.closeEditContactDialog();
+    this.openSuccessDialog('You have updated the Contact');
   }
 
   deleteContact(contact: IContact) {
     console.log('Contact deleted:', contact);
     // delete from backend...
     this.closeEditContactDialog();
+    this.openSuccessDialog('The Contact is successfully deleted');
   }
 
   ngOnInit() {

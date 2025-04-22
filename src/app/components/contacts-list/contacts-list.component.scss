@@ -458,6 +458,56 @@
 .action-button img:hover {
     filter: brightness(0) saturate(100%) invert(43%) sepia(92%) saturate(1186%) hue-rotate(176deg) brightness(92%) contrast(89%);
 }
+.success-dialog {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(250%);
+    background-color: #1c2b3a;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-family: "Inter", sans-serif;
+    opacity: 0;
+}
+
+.success-dialog.show {
+    animation: slideInFromRightToCenter 0.7s ease-out forwards;
+    -webkit-animation: slideInFromRightToCenter 0.7s ease-out forwards;
+}
+
+.success-dialog.hide {
+    animation: slideOutToRight 0.4s ease-in forwards;
+    -webkit-animation: slideOutToRight 0.4s ease-in forwards;
+}
+
+@keyframes slideInFromRightToCenter {
+    0% {
+        transform: translateX(250%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(-50%);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToRight {
+    0% {
+        transform: translateX(-50%);
+        opacity: 1;
+       
+    }
+
+    100% {
+        transform: translateX(250%);
+        opacity: 0;
+    }
+}
 
 @media (min-width: 937px) {
 
