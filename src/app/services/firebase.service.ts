@@ -22,20 +22,18 @@ export class FirebaseService implements ContactService {
   }
 
   getContacts(): Observable<Contact[]> {
-    return collectionData(collection(this.firestore, 'contacts')).pipe(
-      map((response: any) => {
-        return response.map((item: IContact) => {
-          const contact: Contact = {
-            id: '',
-            name: item.name,
-            mail: item.mail,
-            phone: item.phone,
-            color: item.color ?? generateRandomColor(),
-            initials: generateInitials(item.name)
-          };
-          return contact;
-        });
-      })
+    const coll = collection(this.firestore, 'contacts');
+    return collectionData(coll, { idField: 'id' }).pipe(
+      map((docs: any[]) =>
+        docs.map(item => ({
+          id:       item.id,               // ← Firestore’s auto‑generated ID
+          name:     item.name,
+          mail:     item.mail,
+          phone:    item.phone,
+          color:    item.color  ?? generateRandomColor(),
+          initials: item.initials ?? generateInitials(item.name)
+        }))
+      )
     );
   }
 
@@ -92,7 +90,7 @@ subContacts() {
   }
 
 
-
+/*
   subContacts() {
     return onSnapshot(this.getContactsRef('contacts'), (contactList) => {
       this.contacts = [];
@@ -102,7 +100,7 @@ subContacts() {
       console.log(this.contacts);
     })
   }
-
+*/
 
   async addContactToFirebase(newContact: IContact): Promise<void> {
     const contactWithColor: IContact = { ...newContact, color: newContact.color || generateRandomColor() };

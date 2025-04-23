@@ -1,6 +1,8 @@
 import { Component, EventEmitter, inject, Output, Input } from '@angular/core';
 import { IContact } from '../../../interfaces/contact';
 import { FormsModule } from '@angular/forms';
+import { Contact } from '../../../models/contact.model';
+import { FirebaseService } from '../../../services/firebase.service';
 
 @Component({
   selector: 'app-edit-contacts',
@@ -10,10 +12,10 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './edit-contacts.component.scss'
 })
 export class EditContactsComponent {
-  @Input() contact!: IContact;
+  @Input() contact!: Contact;
   @Output() close = new EventEmitter<void>(); 
   @Output() save = new EventEmitter<IContact>();
-  @Output() delete = new EventEmitter<IContact>();
+  @Output() delete = new EventEmitter<Contact>();
   
     // contact: IContact = {
     //   name: '',
@@ -21,12 +23,19 @@ export class EditContactsComponent {
     //   phone: ''
     // }
   
+  
+  constructor (private firebaseService: FirebaseService) {}
+    
       onSave() {
     this.save.emit(this.contact);
+    this.firebaseService.updateContactInFirebase(this.contact.id, this.contact);
+
   }
 
   onDelete() {
-    this.delete.emit(this.contact);
+    console.log(this.contact);
+    this.firebaseService.deleteContactInFirebase(this.contact.id);
+    //this.delete.emit(this.contact);
   }
 
   onClose() {

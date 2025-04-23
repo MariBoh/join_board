@@ -105,8 +105,7 @@
         }
 
         @if (showEditContactDialog) {
-        <app-edit-contacts [contact]="selectedContact!" (close)="closeEditContactDialog()" (save)="editContact($event)"
-            (delete)="deleteContact($event)">
+        <app-edit-contacts [contact]="selectedContact!" (close)="closeEditContactDialog()" (save)="editContact($event)" (delete)="deleteContact($event)">
         </app-edit-contacts>
         }
     </div>

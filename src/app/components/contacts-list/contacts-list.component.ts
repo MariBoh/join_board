@@ -5,6 +5,7 @@ import { Contact } from '../../models/contact.model';
 import { ContactService } from '../../services/contact.service';
 import { EditContactsComponent } from './edit-contacts/edit-contacts.component';
 import { IContact } from '../../interfaces/contact';
+import { FirebaseService } from '../../services/firebase.service';
 
 interface ContactGroup {
   letter: string;
@@ -65,7 +66,7 @@ export class ContactsListComponent implements OnInit {
   saveNewContact(contactData: any) {
     console.log('Your contact saved', contactData);
     //backend-code from firebase
-
+    this.firebaseService.addContactToFirebase(contactData);
     this.closeAddContactDialog();
   }
 
@@ -75,8 +76,9 @@ export class ContactsListComponent implements OnInit {
     this.closeEditContactDialog();
   }
 
-  deleteContact(contact: IContact) {
+  deleteContact(contact: Contact) {
     console.log('Contact deleted:', contact);
+    this.firebaseService.deleteContactInFirebase(contact.id);
     // delete from backend...
     this.closeEditContactDialog();
   }
