@@ -336,7 +336,7 @@ input::placeholder {
 }
 @media screen and (max-width: 450px) {
   .right-panel {
-    height: 444px;
+    height: 464px;
   }
   h2 {
     font-size: 36px !important;
@@ -385,4 +385,22 @@ input::placeholder {
   .contact-dialog {
     width: 300px;
   }
+}
+@media screen and (max-height: 668px) {
+  .contact-dialog {
+      width: 324px;
+    }
+        .close-btn {
+          top: -150px;
+          right: 25px;
+        }
+    .left-panel{
+              height: 168px;
+    }
+    .avatar{
+      display: none;
+    }
+    .right-panel{
+      height: 318px;
+    }
 }
