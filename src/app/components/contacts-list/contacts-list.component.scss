@@ -106,6 +106,10 @@
     }
 }
 
+.back-button {
+    display: none;
+}
+
 .contact-avatar {
     width: 42px;
     height: 42px;
@@ -157,9 +161,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100%;
-    width: calc(1920px - 232px - 456px);
-    min-width: calc(1920px - 232px - 456px);
-    max-width: calc(1920px - 232px - 456px);
+    width: calc(100vw - 232px - 456px);
 }
 
 .contacts-title-container {
@@ -167,6 +169,7 @@
     align-items: center;
     gap: 30px;
     margin-bottom: 30px;
+    max-width: calc(1920px - 232px - 456px);
 }
 
 .contacts-title {
@@ -459,6 +462,57 @@
     filter: brightness(0) saturate(100%) invert(43%) sepia(92%) saturate(1186%) hue-rotate(176deg) brightness(92%) contrast(89%);
 }
 
+.success-dialog {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(250%);
+    background-color: #1c2b3a;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-family: "Inter", sans-serif;
+    opacity: 0;
+}
+
+.success-dialog.show {
+    animation: slideInFromRightToCenter 0.7s ease-out forwards;
+    -webkit-animation: slideInFromRightToCenter 0.7s ease-out forwards;
+}
+
+.success-dialog.hide {
+    animation: slideOutToRight 0.4s ease-in forwards;
+    -webkit-animation: slideOutToRight 0.4s ease-in forwards;
+}
+
+@keyframes slideInFromRightToCenter {
+    0% {
+        transform: translateX(250%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(-50%);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToRight {
+    0% {
+        transform: translateX(-50%);
+        opacity: 1;
+
+    }
+
+    100% {
+        transform: translateX(250%);
+        opacity: 0;
+    }
+}
+
 @media (min-width: 937px) {
 
     .alt-add-contact,
@@ -493,7 +547,7 @@
     }
 
     .contact-details-panel {
-        padding-left: 16px;
+        padding-left: 0;
         padding-right: 16px;
     }
 
@@ -508,7 +562,7 @@
         flex: 0 0 42px !important;
         width: 42px !important;
         height: 42px !important;
-        border-radius: 50%;
+        border-radius: 50% !important;
         line-height: 42px !important;
         font-size: 16px !important;
         display: flex !important;
@@ -558,20 +612,21 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        position: relative;
-        z-index: 2;
-        height: calc(100vh - 96px);
+        padding-top: 72px;
         padding-bottom: 80px;
+        height: calc(100vh - 72px - 80px);
+        width: 100vw !important;
+        box-sizing: border-box;
+    }
+
+    .details-contact-info {
+        margin: 0 0 32px 0;
     }
 
     .contacts-list,
     .contacts-details {
-        width: auto;
+        width: 100%;
         max-width: 90%;
-    }
-
-    .contacts-details {
-        padding: 16px;
     }
 
     .add-contact-button {
@@ -614,5 +669,81 @@
 
     .details-active .contacts-details {
         display: block;
+    }
+
+    .contacts-list,
+    .contacts-details,
+    .contacts-title-container {
+        box-sizing: border-box;
+    }
+
+    .contacts-title-container {
+        margin-bottom: 18px;
+    }
+
+    .contacts-list,
+    .contacts-details {
+        width: 100%;
+        max-width: 100vw;
+        margin: 0 auto;
+    }
+
+    .contacts-list {
+        width: clamp(320px, 90vw, 456px);
+        margin: 0 auto;
+        box-sizing: border-box;
+        box-shadow: none;
+    }
+
+    .contacts-container {
+        padding-top: 0;
+    }
+
+    .contacts-container.details-active {
+        padding-bottom: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        height: calc(100vh - 72px - 80px) !important;
+    }
+
+    .contacts-container.details-active .contacts-list {
+        display: none !important;
+    }
+
+    .contacts-container:not(.details-active) .contacts-details {
+        display: none !important;
+    }
+
+    .contacts-container.details-active .contacts-details {
+        display: flex !important;
+        flex: 1 1 auto !important;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    .contacts-container.details-active .contact-details-panel {
+        flex: 1 1 auto !important;
+        overflow-y: auto !important;
+    }
+
+    .details-fullscreen .back-button {
+        display: flex !important;
+        position: fixed;
+        top: 180px;
+        right: 24px;
+        width: 30px;
+        height: 30px;
+        background: none;
+        border: none;
+        padding: 0;
+        box-shadow: none !important;
+        align-items: center;
+        justify-content: center;
+        z-index: 50;
+    }
+
+    .details-fullscreen .back-button img {
+        width: 100%;
+        height: 100%;
     }
 }
