@@ -197,6 +197,25 @@ input::placeholder {
     }
   }
 }
+@media screen and (max-width: 1209px) {
+  .left-panel h2 {
+    font-size: 56px;
+  }
+}
+@media screen and (max-width: 1132px) {
+  .left-panel h2 {
+    font-size: 44px;
+  }
+    .left-panel p {
+      font-size: 16px;
+    }
+}
+@media screen and (max-width: 999px) {
+  .cancel-btn,
+    .save-btn{
+      padding: 10px 15px;
+    }
+}
 
 @media screen and (max-width: 936px) {
   .contact-dialog {
@@ -212,8 +231,9 @@ input::placeholder {
   .dialog-overlay {
     align-items: flex-start;
     justify-content: center;
-    padding: 20px;
+    padding: 0px;
     overflow-y: auto;
+    margin-top: 28px;
   }
 
   .container {
@@ -229,12 +249,15 @@ input::placeholder {
     flex-direction: column;
     height: auto;
   }
+  .avatar{
+    width: 100px;
+    height: 100px;
+  }
 
   .left-panel {
     width: 100%;
-    height: 352px;
+    height: 330px;
     text-align: center;
-    padding: 30px 20px 40px;
     border-radius: 20px 20px 0 0;
     display: flex;
       flex-direction: column;
@@ -312,8 +335,8 @@ input::placeholder {
     }
 }
 @media screen and (max-width: 450px) {
-  .contact-dialog {
-  height: 100%;
+  .right-panel {
+    height: 444px;
   }
   h2 {
     font-size: 36px !important;
@@ -328,5 +351,30 @@ input::placeholder {
   .close-btn{
     top: -260px;
     right: 25px;
+  }
+}
+@media screen and (max-width: 420px){
+  .contact-dialog{
+    width: 367px;
+  }
+}
+@media screen and (max-width: 390px) {
+  .contact-dialog {
+    width: 350px;
+  }
+}
+@media screen and (max-width: 370px) {
+  .contact-dialog {
+    width: 320px;
+  }
+}
+@media screen and (max-width: 340px) {
+  .contact-dialog {
+    width: 310px;
+  }
+}
+@media screen and (max-width: 330px) {
+  .contact-dialog {
+    width: 300px;
   }
 }

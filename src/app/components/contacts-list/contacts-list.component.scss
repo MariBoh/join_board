@@ -618,6 +618,11 @@
         width: 100vw !important;
         box-sizing: border-box;
     }
+        .success-dialog {
+            position: fixed;
+            bottom: 120px;
+            left: 50%;
+        }
 
     .details-contact-info {
         margin: 0 0 32px 0;
