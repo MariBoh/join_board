@@ -33,5 +33,4 @@ export class AddContactComponent {
     this.contact ={name: '', mail: '', phone: '', color: generateRandomColor()} //keeping field empty after submit
   }
  
-
 }

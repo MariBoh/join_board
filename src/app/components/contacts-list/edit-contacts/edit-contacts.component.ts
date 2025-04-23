@@ -17,30 +17,24 @@ export class EditContactsComponent {
   @Output() save = new EventEmitter<IContact>();
   @Output() delete = new EventEmitter<Contact>();
   
-    // contact: IContact = {
-    //   name: '',
-    //   email: '',
-    //   phone: ''
-    // }
-  
-  
-  constructor (private firebaseService: FirebaseService) {}
-    
-      onSave() {
-    this.save.emit(this.contact);
-    this.firebaseService.updateContactInFirebase(this.contact.id, this.contact);
+  constructor (private firebaseService: FirebaseService) {
 
   }
 
+  onSave() {
+    
+    this.save.emit(this.contact);
+  }
+
   onDelete() {
-    console.log(this.contact);
     this.firebaseService.deleteContactInFirebase(this.contact.id);
-    //this.delete.emit(this.contact);
+    this.delete.emit(this.contact);
   }
 
   onClose() {
     this.close.emit();
   }
+
   getInitials(fullName: string): string {
     if (!fullName) return '';
     const names = fullName.trim().split(' ');

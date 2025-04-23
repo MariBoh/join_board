@@ -82,31 +82,24 @@ export class ContactsListComponent implements OnInit {
   }
 
   saveNewContact(contactData: any) {
-    console.log('Your contact saved', contactData);
-    //backend-code from firebase
     this.firebaseService.addContactToFirebase(contactData);
     this.closeAddContactDialog();
     this.openSuccessDialog('You have added a new Contact');
   }
 
   editContact(contactData: IContact) {
-    console.log('Contact updated:', contactData);
-    // update to backend here...
     this.closeEditContactDialog();
     this.openSuccessDialog('You have updated the Contact');
   }
 
   deleteContact(contact: Contact) {
-    console.log('Contact deleted:', contact);
     this.firebaseService.deleteContactInFirebase(contact.id);
-    // delete from backend...
     this.closeEditContactDialog();
     this.openSuccessDialog('The Contact is successfully deleted');
   }
 
   ngOnInit() {
     this.loadContacts();
-    // console.log('clicked');
   }
 
   loadContacts() {

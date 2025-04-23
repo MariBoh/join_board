@@ -13,8 +13,6 @@ export class FirebaseService implements ContactService {
 
   firestore: Firestore = inject(Firestore);
 
-
-  //MARIAN 4 Lines
   contacts: IContact[] = [];
   unsubContacts;
   constructor() {
@@ -26,7 +24,7 @@ export class FirebaseService implements ContactService {
     return collectionData(coll, { idField: 'id' }).pipe(
       map((docs: any[]) =>
         docs.map(item => ({
-          id:       item.id,               // ← Firestore’s auto‑generated ID
+          id:       item.id,               
           name:     item.name,
           mail:     item.mail,
           phone:    item.phone,
@@ -36,18 +34,6 @@ export class FirebaseService implements ContactService {
       )
     );
   }
-
-
-subContacts() {
-  return onSnapshot(this.getContactsRef('contacts'), (contactList) => {
-    this.contacts = [];
-    contactList.forEach((contact) => {
-    this.contacts.push(this.setContactObject(contact.data(), contact.id));
-  } )
-  console.log(this.contacts);
-})
-}
-
 
   addContact(contact: Omit<Contact, 'id' | 'initials' | 'color'>): Observable<Contact> {
     const newContact: Contact = {
@@ -59,14 +45,9 @@ subContacts() {
     return of(newContact);
   }
 
-
-
-  // MARIAN III
-
   getContactsRef(colId: string) {
     return collection(this.firestore, colId);
   }
-
 
   getSingleContactRef(colId: string, docId: string) {
     return doc(collection(this.firestore, colId), docId);
@@ -89,29 +70,23 @@ subContacts() {
     };
   }
 
-
-/*
   subContacts() {
     return onSnapshot(this.getContactsRef('contacts'), (contactList) => {
       this.contacts = [];
       contactList.forEach((contact) => {
         this.contacts.push(this.setContactObject(contact.data(), contact.id));
       })
-      console.log(this.contacts);
     })
   }
-*/
 
   async addContactToFirebase(newContact: IContact): Promise<void> {
     const contactWithColor: IContact = { ...newContact, color: newContact.color || generateRandomColor() };
     try {
       const docRef = await addDoc(this.getContactsRef('contacts'), contactWithColor);
-      console.log('Document written with ID:', docRef.id);
     } catch (err) {
       console.error(err);
     }
   }
-
 
   getCleanJson(changedContact: IContact) {
     return {
@@ -122,7 +97,6 @@ subContacts() {
     };
   }
 
-
   async updateContactInFirebase(ContactId: string, changedContact: IContact) {
     if (ContactId) {
       await updateDoc(this.getSingleContactRef('contacts', ContactId), this.getCleanJson(changedContact)).catch(
@@ -131,7 +105,6 @@ subContacts() {
     }
   }
 
-
   async deleteContactInFirebase(ContactId: string) {
     if (ContactId) {
       await deleteDoc(this.getSingleContactRef('contacts', ContactId)).catch(
@@ -139,33 +112,10 @@ subContacts() {
       ).then();
     }
   }
-
-
+  
   //Lifecycle Hooks eigentlich nicht in service.ts
-
   ngOnDestroy() {
     this.unsubContacts();
   }
 
-
 }
-
-/*
-  getContacts(): Observable<Contact[]> {
-    return collectionData(collection(this.firestore, 'contacts')).pipe(
-      map((response: any) => {
-        return response.map((item : IContact) => {
-          const contact : Contact = {
-            id: '',
-            name: item.name,
-            email: item.mail,
-            phone: item.phone,
-            color: generateRandomColor(),
-            initials: generateInitials(item.name)
-          };
-          return contact;
-        });
-      })
-    );
-  }
-    */
