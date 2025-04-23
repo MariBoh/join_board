@@ -17,7 +17,7 @@ interface ContactGroup {
   standalone: true,
   imports: [CommonModule, AddContactComponent, EditContactsComponent],
   templateUrl: './contacts-list.component.html',
-  styleUrls: ['./contacts-list.component.scss']
+  styleUrls: ['./contacts-list.component.scss', './responsive.scss'],
 })
 
 export class ContactsListComponent implements OnInit {
