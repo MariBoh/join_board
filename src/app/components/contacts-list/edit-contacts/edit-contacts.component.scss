@@ -403,3 +403,25 @@ input::placeholder {
     width: 300px;
   }
 }
+@media screen and (max-height: 668px) {
+  .contact-dialog {
+    width: 324px;
+  }
+
+  .close-btn {
+    top: -150px;
+    right: 25px;
+  }
+
+  .left-panel {
+    height: 168px;
+  }
+
+  .avatar {
+    display: none;
+  }
+
+  .right-panel {
+    height: 318px;
+  }
+}
