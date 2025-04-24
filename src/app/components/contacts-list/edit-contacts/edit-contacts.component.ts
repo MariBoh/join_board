@@ -22,7 +22,7 @@ export class EditContactsComponent {
   }
 
   onSave() {
-    
+    this.firebaseService.updateContactInFirebase(this.contact.id, this.contact);
     this.save.emit(this.contact);
   }
 

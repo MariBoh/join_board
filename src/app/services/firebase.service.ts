@@ -4,6 +4,7 @@ import { ContactService } from './contact.service';
 import { from, map, Observable, of } from 'rxjs';
 import { Contact, generateInitials, generateRandomColor } from '../models/contact.model';
 import { IContact } from '../interfaces/contact';
+import { Task } from '../interfaces/task';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,14 @@ export class FirebaseService implements ContactService {
   firestore: Firestore = inject(Firestore);
 
   contacts: IContact[] = [];
+  tasks: Task[] = [];
+
   unsubContacts;
+  unsubTasks;
+
   constructor() {
     this.unsubContacts = this.subContacts();
+    this.unsubTasks = this.subTasks();
   }
 
   getContacts(): Observable<Contact[]> {
@@ -116,6 +122,31 @@ export class FirebaseService implements ContactService {
   //Lifecycle Hooks eigentlich nicht in service.ts
   ngOnDestroy() {
     this.unsubContacts();
+    this.unsubTasks();
+  }
+  
+  //Task test
+  setTaskObject(task: any, id: string): Task {
+      return {
+        id: id,
+        title: task.title || "",
+        description: task.description || "",
+        category: task.category || "",
+        priority: task.priority || "",
+        status: task.status || "",
+        duedate: task.duedate || 0,
+        assignees: task.assignees || "",
+        subtasks: task.subtasks || "",
+      };
+  }
+  
+  subTasks() {
+    return onSnapshot(this.getContactsRef('tasks'), (taskList) => {
+      this.tasks = [];
+      taskList.forEach((task) => {
+        this.tasks.push(this.setTaskObject(task.data(), task.id));
+      })
+    })
   }
 
 }

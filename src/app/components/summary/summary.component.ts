@@ -1,13 +1,14 @@
-
 import { Component } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 
 
 @Component({
   selector: 'app-summary',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.scss'
 })
@@ -33,12 +34,6 @@ export class SummaryComponent {
 
   }
 
-
-  getContacts(){
-    return this.firebaseService.contacts;
-  }
-
-
   addContactFormToFirebase() {
     let contact = {
       name: this.name,
@@ -47,7 +42,6 @@ export class SummaryComponent {
     }
     this.firebaseService.addContactToFirebase(contact);
   }
-
 
   saveEditedContactFormToFirebase(index: number) {
       this.selectedContactIndex = index;
@@ -62,7 +56,6 @@ export class SummaryComponent {
     }
   }
 
-
   deleteContactFromFirebase(index: number) {
     this.selectedContactIndex = index;
     this.contactId = this.firebaseService.contacts[index].id;
@@ -70,5 +63,12 @@ export class SummaryComponent {
     this.firebaseService.deleteContactInFirebase(this.contactId);
   }
 }
+ 
+  // Chat GPT
+  getContactNameById(id: string): string {
+    let contact = this.firebaseService.contacts.find(c => c.id === id);
+    return contact ? contact.name : 'Unbekannt';
+  }
+
 
 }
