@@ -6,6 +6,7 @@ import { ContactService } from '../../services/contact.service';
 import { EditContactsComponent } from './edit-contacts/edit-contacts.component';
 import { IContact } from '../../interfaces/contact';
 import { FirebaseService } from '../../services/firebase.service';
+import { generateInitials } from '../../models/contact.model';
 
 interface ContactGroup {
   letter: string;
@@ -77,14 +78,19 @@ export class ContactsListComponent implements OnInit {
   }
 
   closeEditContactDialog() {
-    this.selectedContact = null;
     this.showEditContactDialog = false;
     document.body.style.overflow = '';
     this.showSuccessMsgDialog = false; //when just closing dialog, no need to this dialog message
   }
 
   saveNewContact(contactData: any) {
+    contactData.initials = generateInitials(contactData.name);
     this.firebaseService.addContactToFirebase(contactData);
+
+    this.contacts.push(contactData);
+    this.groupContactsByFirstLetter();
+    this.selectedContact = contactData;
+
     this.closeAddContactDialog();
     this.openSuccessDialog('You have added a new Contact');
   }
