@@ -17,7 +17,7 @@ interface ContactGroup {
   standalone: true,
   imports: [CommonModule, AddContactComponent, EditContactsComponent],
   templateUrl: './contacts-list.component.html',
-  styleUrls: ['./contacts-list.component.scss']
+  styleUrls: ['./contacts-list.component.scss', './responsive.scss'],
 })
 
 export class ContactsListComponent implements OnInit {
@@ -40,16 +40,18 @@ export class ContactsListComponent implements OnInit {
   openAddContactDialog() {
     this.showAddContactDialog = true;
     document.body.style.overflow = 'hidden';
+    document.querySelector('.contacts-container')!.classList.add('dialog-open');
   }
 
   closeAddContactDialog() {
     this.showAddContactDialog = false;
     document.body.style.overflow = '';
-    this.showSuccessMsgDialog = false; 
+    this.showSuccessMsgDialog = false;
+    document.querySelector('.contacts-container')!.classList.remove('dialog-open');
   }
 
   openSuccessDialog(message: string) {
-    this.showSuccessMsg = message; 
+    this.showSuccessMsg = message;
     this.dialogState = 'show';
     this.showSuccessMsgDialog = true;
 
