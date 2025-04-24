@@ -290,14 +290,14 @@
 
         .contact-name,
         .contact-email {
-            font-size: 18px;
+            font-size: 16px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
         .contacts-list {
-            width: calc(456px - 60px) !important;
+            width: calc(456px - 70px) !important;
         }
 
         .contact-group {
