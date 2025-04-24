@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IContact } from '../../../interfaces/contact';
 import { FirebaseService } from '../../../services/firebase.service';
 import { generateRandomColor } from '../../../models/contact.model';
+import { isValidPhoneNumber } from 'libphonenumber-js/min';
 
 @Component({
   selector: 'app-add-contact',
@@ -31,6 +32,10 @@ export class AddContactComponent {
   onSubmit() {
     this.save.emit(this.contact);
     this.contact ={name: '', mail: '', phone: '', color: generateRandomColor()} //keeping field empty after submit
+  }
+
+  isPhoneValid(phone: string): boolean {
+    return phone ? isValidPhoneNumber(phone) : false;
   }
  
 }

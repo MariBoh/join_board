@@ -18,7 +18,7 @@
               <div class="avatar"><img src="./../../../../assets/img/contact-dialog/contact-avatar.png" alt="avatar"></div>
           <div class="form-fields">
                 <div class="input-group">
-                  <input type="text" #name="ngModel" [(ngModel)]="contact.name" placeholder="Name" required minlength="3" name="name"/>
+                  <input type="text" #name="ngModel" [(ngModel)]="contact.name" placeholder="Name" required minlength="3" pattern="^[a-zA-Z\s]*$" name="name"/>
                   <span><img src="./../../../../assets/img/contact-dialog/person.png" alt=""></span>
                 </div>
                   @if(!name.valid && name.touched) {
@@ -32,7 +32,7 @@
                     <div class="error-msg"><span >please enter valid email</span></div>
                   }
                 <div class="input-group">
-                  <input type="tel" [(ngModel)]="contact.phone" placeholder="Phone"   pattern="^(\+49|0049|0)[1-9][0-9]{7,14}$" #phone="ngModel"   name="phone" required/>
+                  <input type="tel" [(ngModel)]="contact.phone" placeholder="Phone"   pattern="^(?:\+|00|0)[1-9]\d{6,14}$" #phone="ngModel"   name="phone" required/>
                   <span><img src="./../../../../assets/img/contact-dialog/call.png" alt=""></span>
                 </div>
                 @if(!phone.valid && phone.touched) {

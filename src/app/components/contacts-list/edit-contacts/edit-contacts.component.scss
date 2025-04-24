@@ -344,7 +344,7 @@ input::placeholder {
 }
 @media screen and (max-width: 450px) {
   .right-panel {
-    height: 444px;
+    height: 464px;
   }
 
   h2 {
@@ -403,7 +403,7 @@ input::placeholder {
     width: 300px;
   }
 }
-@media screen and (max-height: 668px) {
+@media screen and (max-height: 668px) { //Iphone se
   .contact-dialog {
     width: 324px;
   }
