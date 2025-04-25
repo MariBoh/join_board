@@ -80,7 +80,7 @@ export class ContactsListComponent implements OnInit {
   closeEditContactDialog() {
     this.showEditContactDialog = false;
     document.body.style.overflow = '';
-    this.showSuccessMsgDialog = false; //when just closing dialog, no need to this dialog message
+    this.showSuccessMsgDialog = false; 
   }
 
   saveNewContact(contactData: any) {
@@ -102,6 +102,7 @@ export class ContactsListComponent implements OnInit {
 
   deleteContact(contact: Contact) {
     this.firebaseService.deleteContactInFirebase(contact.id);
+    this.selectedContact = null
     this.closeEditContactDialog();
     this.openSuccessDialog('The Contact is successfully deleted');
   }
