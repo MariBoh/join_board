@@ -1,1 +1,62 @@
-<p>add-task works!</p>
+<section class="add-task">
+  <div class="addTaskMaxWidth">
+    <header class="add-task-header">
+      <h1>Add Task</h1>
+    </header>
+
+    <main class="add-task-content">
+      <div class="left-side">
+        <label>
+          Title*<br />
+          <input type="text" placeholder="Enter a title" required />
+        </label>
+
+        <label>
+          Description<br />
+          <textarea placeholder="Enter a Description"></textarea>
+        </label>
+
+        <label>
+          Due date*<br />
+          <input type="date" required />
+        </label>
+      </div>
+
+      <div class="right-side">
+        <div class="priority">
+          <button>Urgent ⬆️</button>
+          <button class="medium">Medium ➡️</button>
+          <button>Low ⬇️</button>
+        </div>
+
+        <label>
+          Assigned to<br />
+          <select>
+            <option>Select contacts to assign</option>
+          </select>
+        </label>
+
+        <label>
+          Category*<br />
+          <select required>
+            <option>Select task category</option>
+          </select>
+        </label>
+
+        <label>
+          Subtasks<br />
+          <input type="text" placeholder="Add new subtask" />
+          <button>+</button>
+        </label>
+      </div>
+    </main>
+
+    <footer class="add-task-footer">
+      <span>*This field is required</span>
+      <div class="footer-buttons">
+        <button type="reset" class="clear">Clear ✖️</button>
+        <button type="submit" class="create">Create Task ✅</button>
+      </div>
+    </footer>
+  </div>
+</section>
