@@ -6,12 +6,14 @@
   width: calc(100vw - clamp(180px, 16.1vw, 232px));
   min-height: calc(100dvh - 96px);
   height: 100%;
-  background-color: red;//$primary-bg;
+  background-color: $primary-bg;
+
+  .addTaskMaxWidth {
+    @include max-width();
+  }
 }
 
-.addTaskMaxWidth {
-    @include max-width();
-}
+
 
 @media (max-width: 936px) {
   .add-task {
