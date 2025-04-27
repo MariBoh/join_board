@@ -7,6 +7,7 @@
   min-height: calc(100dvh - 96px);
   height: 100%;
   background-color: $primary-bg;
+  font-family: "Inter", sans-serif;
 
   .addTaskMaxWidth {
     @include max-width();
@@ -26,22 +27,56 @@
     .addTaskContent {
       width: 100%;
       display: flex;
-      background-color: rgba(206, 203, 40, 0.503);
 
       .leftSide {
         flex: 1;
         border-right: 1px solid $border-add-task;
         font-size: clamp(16px, 1.4vw, 27px);
+        font-weight: 400;
+
+        label {
+          padding-bottom: clamp(32px, 2.23vw, 43px);
+          display: block;
+        }
 
         .requred {
           color: $requred-field;
+        }
+
+        .layoutLeftName {
+          padding-bottom: 10.67px;
+        }
+
+        .enterTitle {
+          width: 98%;
+          padding-left: 21px;
+          border-radius: 12px;
+          border: 1px solid $border-add-task;
+        }
+
+        .inputDescription {
+          padding-top: 18px;
+          height: clamp(88px, 8.33vw, 160px);
+          font-family: "Inter", sans-serif;
+          font-size: clamp(16px, 1vw, 20px);
+          color: $border-add-task;
+        }
+
+        .inputTitle,
+        .inputData {
+          height: 64px;
+          font-size: clamp(16px, 1vw, 20px);
+          color: $border-add-task;
+          font-family: "Inter", sans-serif;
+        }
+        .inputTitle:focus {
+          border-color: $link-font;
         }
       }
 
       .rightSide {
         flex: 1;
         border-left: 1px solid $border-add-task;
-
       }
     }
   }
