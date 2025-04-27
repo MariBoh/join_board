@@ -1,61 +1,85 @@
-<section class="add-task">
+<section class="addTask">
   <div class="addTaskMaxWidth">
-    <header class="add-task-header">
-      <h1>Add Task</h1>
+    <header class="addTaskHeader">
+      <h1 class="headingAddTask">Add Task</h1>
     </header>
 
-    <main class="add-task-content">
-      <div class="left-side">
+    <!-- ======= Unter ist in arbeit ======= -->
+    <main class="addTaskContent">
+
+      <!-- ======= left Side in arbeit ======= -->
+      <div class="leftSide">
         <label>
-          Title*<br />
-          <input type="text" placeholder="Enter a title" required />
-        </label>
+          Title <span class="requred">*</span><br />
+          <input type="text" placeholder="Enter a title" required /> </label
+        ><br />
 
         <label>
           Description<br />
-          <textarea placeholder="Enter a Description"></textarea>
-        </label>
+          <textarea
+            type="text"
+            placeholder="Enter a Description"
+          ></textarea></label
+        ><br />
 
         <label>
-          Due date*<br />
+          Due date <span class="requred">*</span><br />
           <input type="date" required />
         </label>
       </div>
 
-      <div class="right-side">
+      <!-- ======= left Side in arbeit ======= -->
+      <div class="rightSide">
         <div class="priority">
-          <button>Urgent ⬆️</button>
-          <button class="medium">Medium ➡️</button>
-          <button>Low ⬇️</button>
+          <a
+            >Urgent
+            <img
+              src="../../../assets/imgs/imgs_story2/addTask/Urgent1.png"
+              alt="img Task"
+          /></a>
+          <br />
+          <a
+            >Medium
+            <img
+              src="../../../assets/imgs/imgs_story2/addTask/Medium1.png"
+              alt="img Task" /></a
+          ><br />
+          <a
+            >Low
+            <img
+              src="../../../assets/imgs/imgs_story2/addTask/Low1.png"
+              alt="img Task" /></a
+          ><br />
         </div>
 
         <label>
           Assigned to<br />
           <select>
             <option>Select contacts to assign</option>
-          </select>
-        </label>
+          </select> </label
+        ><br />
 
         <label>
-          Category*<br />
+          Category <span class="requred">*</span><br />
           <select required>
             <option>Select task category</option>
-          </select>
-        </label>
+          </select> </label
+        ><br />
 
         <label>
-          Subtasks<br />
-          <input type="text" placeholder="Add new subtask" />
-          <button>+</button>
-        </label>
+          Subtasks <span class="requred">*</span><br />
+          <select required>
+            <option>Add new subask</option>
+          </select> </label
+        ><br />
       </div>
     </main>
 
-    <footer class="add-task-footer">
-      <span>*This field is required</span>
-      <div class="footer-buttons">
-        <button type="reset" class="clear">Clear ✖️</button>
-        <button type="submit" class="create">Create Task ✅</button>
+    <footer class="addTaskFooter">
+      <span><span class="requred">*</span>This field is required</span>
+      <div class="footerButtons">
+        <a type="reset" class="clear">Clear</a>
+        <a type="submit" class="create">Create Tasks</a>
       </div>
     </footer>
   </div>
