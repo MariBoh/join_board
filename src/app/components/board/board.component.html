@@ -1,1 +1,87 @@
-<p>board works!</p>
+<div class="board-container">
+    <div class="board-header-wrapper">
+        <div class="board-header">
+            <!-- Title -->
+            <div class="header-title">
+                Board
+            </div>
+
+            <!-- Search + Add button -->
+            <div class="header-controls">
+                <div class="search-bar">
+                    <div class="search-input-wrapper">
+                        <input id="searchInput" type="text" placeholder="Find Task" aria-label="Find Task" />
+                        <span class="divider"></span>
+                    </div>
+                    <button class="search-icon" aria-label="Search">
+                        <img src="/assets/img/board/search.svg" alt="Search" />
+                    </button>
+                </div>
+                <button class="add-task-btn" aria-label="Add Task">
+                    Add task +
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Card -->
+    <div cdkDropListGroup class="content-container">
+        @for (column of columns; track column.title) {
+        <div class="example-container">
+            <h2>{{ column.title }}</h2>
+            <div cdkDropList [cdkDropListData]="column.tasks" [cdkDropListConnectedTo]="getConnectedColumns()"
+                class="example-list" (cdkDropListDropped)="drop($event)">
+
+                @for (task of column.tasks; track task.fakeId) {
+                <div class="example-box" cdkDrag>
+                    <div class="task-category">{{ task.fakeCategory }}</div>
+                    <h3 class="task-title">{{ task.fakeTitle }}</h3>
+                    <p class="task-description">{{ task.fakeDescription }}</p>
+                    <!-- Subtask -->
+                    @if (task.fakeSubtasks.length > 0) {
+                    <div class="subtasks-line">
+                        <div class="subtasks-bar">
+                            <div class="subtasks-progress"
+                                [style.width.%]="(getCompletedSubtasksCount(task)/task.fakeSubtasks.length)*100">
+                            </div>
+                        </div>
+                        <span class="subtasks-count">
+                            {{ getCompletedSubtasksCount(task) }}/{{ task.fakeSubtasks.length }} Subtasks
+                        </span>
+                    </div>
+                    }
+                    <!-- Avatar + Initials -->
+                    <div class="task-footer">
+                        <div class="assignees">
+                            @for (assigneeId of task.fakeAssignees; track assigneeId) {
+                            <span class="avatar">{{ getFakeContactInitials(assigneeId) }}</span>
+                            }
+                        </div>
+                        <!-- Priority -->
+                        <span class="priority-badge {{task.fakePriority}}">{{ task.fakePriority }}</span>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+
+
+
+<!-- @for (item of firebaseService.tasks; track $index) {
+        <div class="contact-card">
+            <p>title: {{ item.title }}</p>
+            <p>description: {{ item.description }}</p>
+            <p>category: {{ item.category }}</p>
+            <p>priority: {{ item.priority }}</p>
+            <p>status: {{ item.status }}</p>
+            <p>due date: {{ item.duedate.toDate() | date: 'dd.MM.yy' }}</p>
+            <p>assignees:</p>
+            @for (item of item.assignees; track $index) {
+            <p class="sub-content">Assignee {{$index+1}}: {{ item }} -> {{ getContactNameById(item) }} </p>
+            }
+            <p>subtasks: {{ item.id }}</p>
+        </div>
+        } -->

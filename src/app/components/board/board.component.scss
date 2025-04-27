@@ -1,0 +1,277 @@
+// copy paste angular material drag and drop example styles here
+.example-container {
+    width: 400px;
+    max-width: 100%;
+    margin: 0 25px 25px 0;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.example-list {
+    border: solid 1px #000000;
+    min-height: 60px;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+}
+
+.example-box {
+    padding: 12px;
+    margin-bottom: 12px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: move;
+
+    .task-category {
+        font-weight: bold;
+        margin-bottom: 4px;
+        color: #333;
+    }
+
+    .task-title {
+        margin: 0 0 8px 0;
+        font-size: 16px;
+        color: var(--darkblue);
+    }
+
+    .task-description {
+        margin: 0 0 12px 0;
+        font-size: 14px;
+        color: #666;
+        line-height: 1.4;
+    }
+
+    .subtasks-line {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+
+        .subtasks-bar {
+            width: 60%;
+            height: 4px;
+            background: #eee;
+            margin-right: 8px;
+
+            .subtasks-progress {
+                height: 100%;
+                background: black;
+            }
+        }
+
+        .subtasks-count {
+            font-size: 12px;
+            color: #666;
+        }
+    }
+
+    .task-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .assignees {
+            display: flex;
+
+            .avatar {
+                width: 24px;
+                height: 24px;
+                background: #eee;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 10px;
+                margin-right: 4px;
+                color: #333;
+            }
+        }
+
+        .priority-badge {
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: capitalize;
+
+            &.low {
+                background: #E8F5E9;
+                color: #2E7D32;
+            }
+
+            &.medium {
+                background: #FFF8E1;
+                color: #FF8F00;
+            }
+
+            &.high {
+                background: #FFEBEE;
+                color: #C62828;
+            }
+        }
+    }
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+        0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+    border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+// end of angular material drag and drop example styles
+
+// testing:
+
+$sidebar: clamp(180px, 16.1vw, 232px);
+
+$header: 96px;
+
+.board-wrapper {
+    width: calc(100vw - #{$sidebar});
+    height: calc(100vh - #{$header});
+}
+
+.board-container {
+    width: calc(100vw - clamp(180px, 16.1vw, 232px));
+    height: calc(100vh - 96px);
+
+    background-color: var(--secondary-bg);
+}
+
+// above 
+
+
+.board-header-wrapper {
+    background-color: var(--secondary-bg);
+    width: 1056px;
+    height: 73px;
+    margin: 0 auto;
+}
+
+.board-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 16px;
+}
+
+.header-title {
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 61px;
+    color: black;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    .search-bar {
+        position: relative;
+        width: 312px;
+        height: 48px;
+        border: 1px solid #A8A8A8;
+        border-radius: 10px;
+        background: white;
+        padding: 0;
+
+        .search-input-wrapper {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 8px 16px;
+        }
+
+        input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font: 400 20px "Inter", sans-serif;
+            padding-right: 52px;
+            width: 100%;
+            box-sizing: border-box;
+
+            &::placeholder {
+                color: #D1D1D1;
+            }
+        }
+
+        .divider {
+            position: absolute;
+            right: 56px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 24px;
+            background-color: #A8A8A8;
+            pointer-events: none;
+        }
+
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            right: 16px;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            padding: 0;
+            cursor: text;
+
+            img {
+                display: block;
+                width: 32px;
+                height: 32px;
+            }
+        }
+    }
+
+}
+
+.add-task-btn {
+    width: 160px;
+    height: 48px;
+    padding: 8px 16px;
+    border: 1px solid var(--darkblue);
+    border-radius: 10px;
+    background-color: var(--darkblue);
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    .plus-icon {
+        font-size: 20px;
+        line-height: 1;
+    }
+
+    &:hover {
+        background-color: var(--light-blue);
+        border-color: var(--light-blue);
+    }
+}
