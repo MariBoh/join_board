@@ -3,7 +3,8 @@
 @import "../../../mixins.scss";
 
 .navbarContainer {
-  height: 100dvh;
+  min-height: 100dvh;
+  height: auto;
   width: clamp(180px, 16.1vw, 232px);
   background-color: $darkblue;
   @include flex-center($direction: column, $justify: space-between);
@@ -34,6 +35,7 @@
         font-family: "Inter", sans-serif;
         padding: 8px 0 8px 26%;
         width: 100%;
+        cursor: pointer;
 
         img {
           width: 25px;
@@ -97,6 +99,7 @@
     bottom: 0;
     left: 0;
     height: 80px;
+    min-height: fit-content;
     width: 100vw;
     z-index: 4;
     padding: 0;

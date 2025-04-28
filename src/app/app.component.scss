@@ -11,6 +11,8 @@ app-header {
 }
 
 .headerContentContainer {
-    @include flex-center($direction: column, $align: flex-start);
+    @include flex-center($direction: column, $justify: flex-start);
+    align-self: stretch;
     width: 100%;
 }
+
