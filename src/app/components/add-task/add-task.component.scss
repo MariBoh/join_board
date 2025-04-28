@@ -35,7 +35,7 @@
         font-weight: 400;
 
         label {
-          padding-bottom: clamp(32px, 2.23vw, 43px);
+          padding-bottom: clamp(20px, 2.23vw, 43px);
           display: block;
         }
 
@@ -49,9 +49,10 @@
 
         .enterTitle {
           width: 98%;
-          padding-left: 21px;
+          padding: 0 21px;
           border-radius: 12px;
           border: 1px solid $border-add-task;
+          cursor: pointer;
         }
 
         .inputDescription {
@@ -66,24 +67,25 @@
         .inputData {
           height: 64px;
           font-size: clamp(16px, 1vw, 20px);
-          color: $border-add-task;
+          color: $privacy-legal;
           font-family: "Inter", sans-serif;
         }
+
         .inputTitle:focus {
           border-color: $link-font;
         }
-      }
 
-      .rightSide {
-        flex: 1;
-        border-left: 1px solid $border-add-task;
+        .rightSide {
+          flex: 1;
+          border-left: 1px solid $border-add-task;
+        }
       }
     }
   }
-}
 
-@media (max-width: 936px) {
-  .addTask {
-    width: 100%;
+  @media (max-width: 936px) {
+    .addTask {
+      width: 100%;
+    }
   }
 }

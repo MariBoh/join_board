@@ -29,7 +29,7 @@
 
         <label>
           <p class="layoutLeftName">Due date <span class="requred">*</span></p>
-          <input class="enterTitle inputData" type="date" required />
+          <input #dueDateInput class="enterTitle inputData" type="date" (change)="validateDueDate()" required />
         </label>
       </div>
 
