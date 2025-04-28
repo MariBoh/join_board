@@ -84,8 +84,20 @@
   }
 
   @media (max-width: 936px) {
-    .addTask {
-      width: 100%;
+    width: 100%;
+
+    .addTaskMaxWidth {
+      .addTaskContent {
+        flex-direction: column;
+
+        .leftSide {
+          border-right: none;
+        }
+
+        .rightSide {
+          border-left: none;
+        }
+      }
     }
   }
 }

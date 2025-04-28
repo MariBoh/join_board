@@ -25,11 +25,22 @@ export class AddTaskComponent implements AfterViewInit {
   validateDueDate(): void {
     const input = this.dueDateInput?.nativeElement;
     if (input) {
-      const selectedDate = new Date(input.value);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      if (selectedDate < today) {
-        input.value = today.toISOString().split('T')[0];
+      const dateValue = input.value;
+      if (dateValue) {
+        const selectedDate = new Date(dateValue);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        // Prüfen, ob das gewählte Datum in der Vergangenheit liegt
+        if (selectedDate < today) {
+          // Wenn ja, setze das Datum auf heute
+          input.value = today.toISOString().split('T')[0];
+          console.log('Selected date was in the past. Reset to today.');
+        } else {
+          // Formatieren und ausgeben
+          const formattedDate = selectedDate.toLocaleDateString('en-US');
+          console.log('Formatted Selected Date:', formattedDate);
+        }
       }
     }
   }
