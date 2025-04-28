@@ -10,14 +10,14 @@
             <div class="header-controls">
                 <div class="search-bar">
                     <div class="search-input-wrapper">
-                        <input id="searchInput" type="text" placeholder="Find Task" aria-label="Find Task" />
+                        <input id="searchInput" type="text" placeholder="Find Task"/>
                         <span class="divider"></span>
                     </div>
-                    <button class="search-icon" aria-label="Search">
+                    <button class="search-icon">
                         <img src="/assets/img/board/search.svg" alt="Search" />
                     </button>
                 </div>
-                <button class="add-task-btn" aria-label="Add Task">
+                <button class="add-task-btn">
                     Add task +
                 </button>
             </div>
@@ -27,7 +27,14 @@
     <div cdkDropListGroup class="content-container">
         @for (column of columns; track column.title) {
         <div class="example-container">
-            <h2>{{ column.title }}</h2>
+            <div class="column-header">
+                <h2>{{ column.title }}</h2>
+                @if (column.title !== 'Done') {<!-- Add task icon button -->
+                <button class="add-column-btn">
+                    <img src="/assets/img/board/add.svg" alt="Add Task" />
+                </button>
+                }
+            </div>
             <div cdkDropList [cdkDropListData]="column.tasks" [cdkDropListConnectedTo]="getConnectedColumns()"
                 class="example-list" (cdkDropListDropped)="drop($event)">
 
