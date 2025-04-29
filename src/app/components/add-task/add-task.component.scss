@@ -28,74 +28,128 @@
       .leftSide,
       .rightSide {
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         font-size: clamp(16px, 1.4vw, 27px);
         font-weight: 400;
+        padding: 0 0 20px 0;
       }
 
+      // Inhalt Left & Right Side
       .leftSide {
         border-right: 1px solid $border-add-task;
 
         label {
           display: block;
-          padding-bottom: clamp(20px, 2.23vw, 43px);
+          padding-bottom: clamp(20px, 2.23vw, 53px);
 
           .enterTitle {
-            width: 98%;
+            width: 92%;
             padding: 0 21px;
+            height: 64px;
             border-radius: 12px;
             border: 1px solid $border-add-task;
-            cursor: pointer;
-            height: 64px;
             font-size: clamp(16px, 1vw, 20px);
             font-family: "Inter", sans-serif;
+            cursor: pointer;
           }
         }
 
+        .inputTitle:focus {
+          border-color: $link-font;
+          color: $border-add-task;
+        }
+
         .inputDescription {
-          padding-top: 18px;
-          height: clamp(88px, 8.33vw, 160px);
+          padding-top: 18px !important;
+          height: clamp(88px, 8.33vw, 160px) !important;
           font-family: "Inter", sans-serif;
           font-size: clamp(16px, 1vw, 20px);
           color: $border-add-task;
         }
 
-        .inputTitle:focus,
-        .inputData:focus {
-          border-color: $link-font;
+        .inputData {
+          width: 92%;
+          padding: 0 21px;
+          height: 64px;
+          border-radius: 12px;
+          border: 1px solid $border-add-task;
+          background-color: $primary-bg;
+          font-size: clamp(16px, 1vw, 20px);
+          font-family: "Inter", sans-serif;
+          color: $border-add-task;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &::placeholder {
+            color: $border-add-task;
+            opacity: 0.6;
+          }
+
+          &:hover {
+            border-color: $link-font;
+            background-color: $primary-bg;
+          }
+
+          &:focus {
+            border-color: $link-font;
+            background-color: $primary-bg;
+            outline: none;
+            box-shadow: 0 0 6px 2px rgba(41, 171, 226, 0.3);
+          }
+
+          &:not(:placeholder-shown) {
+            color: $primary-font;
+            background-color: $secondary-font;
+          }
         }
       }
 
       .rightSide {
         border-left: 1px solid $border-add-task;
-        padding-left: clamp(16px, 2.5vw, 48px);
+        padding-left: 4%;
 
         .priority {
           display: flex;
           justify-content: space-between;
+          padding-bottom: clamp(20px, 2.23vw, 53px);
+
+          .prioTasks {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: clamp(121.33px, 9.4vw, 181.33px);
+            height: clamp(41px, 4vw, 75px);
+            border: 1px solid $border-add-task;
+            border-radius: 12px;
+            cursor: pointer;
+          }
         }
 
         label {
           display: block;
-          padding-bottom: clamp(20px, 2.23vw, 43px);
+          padding-bottom: clamp(20px, 2.23vw, 53px);
 
           .enterTitle {
-            width: 98%;
+            width: 100%;
             padding: 0 21px;
+            height: 64px;
             border-radius: 12px;
             border: 1px solid $border-add-task;
-            cursor: pointer;
-            height: 64px;
             font-size: clamp(16px, 1vw, 20px);
             font-family: "Inter", sans-serif;
-          }
-
-          .subtasks {
-            color: $privacy-legal;
+            cursor: pointer;
           }
 
           .selectCotacts,
           .selectCategory {
             color: $primary-font;
+          }
+
+          .subtasks {
+            color: $privacy-legal;
           }
         }
       }
@@ -106,6 +160,61 @@
 
       .requred {
         color: $requred-field;
+      }
+    }
+
+    .addTaskFooter {
+      margin-top: clamp(40px, 7.2vw, 138px);
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: space-between;
+
+      .layoutLeftName {
+        font-size: clamp(14px, 1vw, 18px);
+        color: $primary-font;
+
+
+        .requred {
+          color: $requred-field;
+          margin-right: 4px;
+        }
+      }
+
+      .footerButtons {
+        display: flex;
+        gap: 20px;
+
+        .clear, .create {
+          padding: 12px 24px;
+          border-radius: 8px;
+          font-weight: 600;
+          font-size: clamp(14px, 1vw, 18px);
+          cursor: pointer;
+          text-decoration: none;
+          border: 1px solid transparent;
+          transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .clear {
+          background-color: transparent;
+          border: 1px solid $darkblue;
+          color: $darkblue;
+
+          &:hover {
+            color: $link-font;
+            border: 1px solid $link-font;
+          }
+        }
+
+        .create {
+          background-color: $darkblue;
+          color: $secondary-font;
+
+          &:hover {
+            background-color: $link-font;
+          }
+        }
       }
     }
   }
@@ -125,11 +234,25 @@
 
         .leftSide {
           border-right: none;
+
+          .enterTitle {
+            width: 100%;
+          }
         }
 
         .rightSide {
           border-left: none;
           padding-left: 0;
+        }
+      }
+
+      .addTaskFooter {
+        align-items: center;
+        text-align: center;
+
+        .footerButtons {
+          flex-direction: column;
+          gap: 12px;
         }
       }
     }

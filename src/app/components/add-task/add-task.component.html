@@ -46,23 +46,22 @@
       <!-- ======= left Side in arbeit ======= -->
       <div class="rightSide">
         <p class="layoutLeftName">Priority</p>
-        <div class="priority">
-          <a (click)="priority = 'urgent'">Urgent
+        <div class="priority layoutLeftName">
+          <a class="prioTasks" (click)="priority = 'urgent'">Urgent
             <img
               src="../../../assets/imgs/imgs_story2/addTask/Urgent1.png"
               alt="img Task"
           /></a>
-          <br />
-          <a (click)="priority = 'medium'">Medium
+          
+          <a class="prioTasks" (click)="priority = 'medium'">Medium
             <img
               src="../../../assets/imgs/imgs_story2/addTask/Medium1.png"
               alt="img Task" /></a
-          ><br />
-          <a (click)="priority = 'low'">Low
+          >
+          <a class="prioTasks" (click)="priority = 'low'">Low
             <img
               src="../../../assets/imgs/imgs_story2/addTask/Low1.png"
-              alt="img Task" /></a
-          ><br />
+              alt="img Task" /></a>
         </div>
 
         <!-- Valeriya i need your attention here--> 
@@ -122,7 +121,7 @@
         ><br />
 
         <label>
-          <p>Subtasks <span class="requred">*</span></p>
+          <p class="layoutLeftName">Subtasks <span class="requred">*</span></p>
           <select required class="enterTitle subtasks" [(ngModel)]="subtasksInput">
             <option>Add new subask</option>
           </select>
@@ -134,7 +133,7 @@
     </main>
 
     <footer class="addTaskFooter">
-      <span><span class="requred">*</span>This field is required</span>
+      <p class="layoutLeftName"><span class="requred">*</span>This field is required</p>
       <div class="footerButtons">
         <a type="reset" class="clear">Clear</a>
        <a type="submit" class="create" (click)="createNewTask()">Create Tasks</a>
