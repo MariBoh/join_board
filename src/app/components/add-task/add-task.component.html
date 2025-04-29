@@ -15,6 +15,7 @@
             type="text"
             placeholder="Enter a title"
             required
+             [(ngModel)]="title"
           /> </label
         ><br />
 
@@ -24,6 +25,7 @@
             class="enterTitle inputDescription"
             type="text"
             placeholder="Enter a Description"
+            [(ngModel)]="description"
           ></textarea></label
         ><br />
 
@@ -36,6 +38,7 @@
             (change)="validateDueDate()"
             [attr.lang]="'en'"
             required
+            [(ngModel)]="duedate"
           />
         </label>
       </div>
@@ -44,47 +47,89 @@
       <div class="rightSide">
         <p class="layoutLeftName">Priority</p>
         <div class="priority">
-          <a
-            >Urgent
+          <a (click)="priority = 'urgent'">Urgent
             <img
               src="../../../assets/imgs/imgs_story2/addTask/Urgent1.png"
               alt="img Task"
           /></a>
           <br />
-          <a
-            >Medium
+          <a (click)="priority = 'medium'">Medium
             <img
               src="../../../assets/imgs/imgs_story2/addTask/Medium1.png"
               alt="img Task" /></a
           ><br />
-          <a
-            >Low
+          <a (click)="priority = 'low'">Low
             <img
               src="../../../assets/imgs/imgs_story2/addTask/Low1.png"
               alt="img Task" /></a
           ><br />
         </div>
 
-        <label>
+        <!-- Valeriya i need your attention here--> 
+         <label> 
           <p class="layoutLeftName">Assigned to</p>
-          <select class="enterTitle selectCotacts">
-            <option>Select contacts to assign</option>
-          </select> </label
-        ><br />
+          <select class="enterTitle selectCotacts" (click)="toggleDropdown()"
+          [value]="getSelectedContactNames()">
+          @if(dropdownOpen){
+             @for (contact of firebaseTaskService.contactList; track contact.id) {
+              <div class="dropdown-item">
+                <span>{{ contact.name }}</span>
+                <input 
+                  type="checkbox" 
+                  [value]="contact.id"
+                  [checked]="contact.id ? selectedAssignees.includes(contact.id) : false"
+                  (change)="onCheckboxChange($event)"
+                />
+              </div>
+            }
+          }
+           
+          </select> </label><br />
+
+          <!-- <div class="assignee-dropdown">
+            <input 
+              type="text" 
+              placeholder="Select contacts to assign"
+              (click)="toggleDropdown()" 
+              [readonly]="true"
+              [value]="getSelectedContactNames()"
+              class="assignee-input"
+            />
+            @if (dropdownOpen) {
+              <div class="dropdown-content">
+                @for (contact of firebaseTaskService.contactList; track contact.id) {
+                  <div class="dropdown-item">
+                    <span>{{ contact.name }}</span>
+                    <input 
+                      type="checkbox" 
+                      [value]="contact.id"
+                      [checked]="contact.id ? selectedAssignees.includes(contact.id) : false"
+                      (change)="onCheckboxChange($event)"
+                    />
+                  </div>
+                }
+              </div>
+            }
+          </div> -->
+
 
         <label>
           <p class="layoutLeftName">Category <span class="requred">*</span></p>
-          <select required class="enterTitle selectCategory">
-            <option>Select task category</option>
+          <select required class="enterTitle selectCategory" [(ngModel)]="category">
+            <option value="Technical Task">Technical Task</option>
+             <option value="User Story">User Story</option>
           </select> </label
         ><br />
 
         <label>
           <p>Subtasks <span class="requred">*</span></p>
-          <select required class="enterTitle subtasks">
+          <select required class="enterTitle subtasks" [(ngModel)]="subtasksInput">
             <option>Add new subask</option>
-          </select> </label
-        >
+          </select>
+           <!-- Valeriya i need your attention here  -->
+          <!-- <label>Subtasks (comma separated)</label>
+            <input type="text" [(ngModel)]="subtasksInput" name="subtasks" /> -->
+          </label>
       </div>
     </main>
 
@@ -92,7 +137,7 @@
       <span><span class="requred">*</span>This field is required</span>
       <div class="footerButtons">
         <a type="reset" class="clear">Clear</a>
-        <a type="submit" class="create">Create Tasks</a>
+       <a type="submit" class="create" (click)="createNewTask()">Create Tasks</a>
       </div>
     </footer>
   </div>

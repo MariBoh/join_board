@@ -109,6 +109,12 @@
       }
     }
   }
+  .create{
+    color: blue;
+    &:hover{
+      cursor: pointer;
+    }  
+  }
 
   @media (max-width: 936px) {
     width: 100%;

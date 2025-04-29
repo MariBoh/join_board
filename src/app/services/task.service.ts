@@ -144,6 +144,25 @@ export class TaskService {
     }
   }
 
+  //firebase contacts functionalities
+
+  async addNewContactToDatabase(contact: ContactInterface) {
+    await addDoc(collection(this.firestore, 'contacts'), contact);
+  }
+
+  async editContactInDatabase(id: string, contact: ContactInterface) {
+      await updateDoc(doc(this.firestore, 'contacts', id), {
+        name: contact.name,
+        mail: contact.mail,
+        phone: contact.phone
+      });
+  } 
+  
+  async deleteContactFromDatabase(id: string) {
+    await deleteDoc(doc(this.firestore, 'contacts', id));
+  }
+
+
   ngOnDestroy() {
     if (this.unsubscribe) {
       this.unsubscribe();

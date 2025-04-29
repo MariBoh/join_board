@@ -1,17 +1,20 @@
 import { Timestamp } from '@angular/fire/firestore';
 import { TaskService } from '../../services/task.service';
 import { Component,inject, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-task',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './add-task.component.html',
   styleUrl: './add-task.component.scss'
 })
 export class AddTaskComponent implements AfterViewInit {
   firebaseTaskService = inject(TaskService);
   @ViewChild('dueDateInput') dueDateInput!: ElementRef<HTMLInputElement>;
+
   title = '';
   description = '';
   duedate: string = '';
@@ -63,9 +66,9 @@ export class AddTaskComponent implements AfterViewInit {
     this.dropdownOpen = false;
   }
 
-  // toggleDropdown() {
-  // this.dropdownOpen = !this.dropdownOpen;
-  // }
+  toggleDropdown() {
+  this.dropdownOpen = !this.dropdownOpen;
+  }
   
   getSelectedContactNames(): string {
   const selectedContacts = this.firebaseTaskService.contactList
@@ -75,18 +78,19 @@ export class AddTaskComponent implements AfterViewInit {
   return selectedContacts.join(', ');
 }
 
-  // onCheckboxChange(event: any) {
-  //   const id = event.target.value;
+  onCheckboxChange(event: any) {
+    const id = event.target.value;
 
-  //   if (event.target.checked) {
-  //     // If checked, add the ID
-  //     this.selectedAssignees.push(id);
-  //   } else {
-  //     // If unchecked, remove the ID
-  //     this.selectedAssignees = this.selectedAssignees.filter(a => a !== id);
-  //   }
-  // }
+    if (event.target.checked) {
+      // If checked, add the ID
+      this.selectedAssignees.push(id);
+    } else {
+      // If unchecked, remove the ID
+      this.selectedAssignees = this.selectedAssignees.filter(a => a !== id);
+    }
+  }
 
+  //Funktion von Valeriya
   ngAfterViewInit(): void {
     this.setTodayAsMinDate();
   }
