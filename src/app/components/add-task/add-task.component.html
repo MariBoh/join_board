@@ -64,53 +64,35 @@
               alt="img Task" /></a>
         </div>
 
-        <!-- Valeriya i need your attention here--> 
-         <label> 
+        <label> 
           <p class="layoutLeftName">Assigned to</p>
-          <select class="enterTitle selectCotacts" (click)="toggleDropdown()"
-          [value]="getSelectedContactNames()">
-          @if(dropdownOpen){
-             @for (contact of firebaseTaskService.contactList; track contact.id) {
-              <div class="dropdown-item">
-                <span>{{ contact.name }}</span>
-                <input 
-                  type="checkbox" 
-                  [value]="contact.id"
-                  [checked]="contact.id ? selectedAssignees.includes(contact.id) : false"
-                  (change)="onCheckboxChange($event)"
-                />
-              </div>
-            }
-          }
-           
-          </select> </label><br />
 
-          <!-- <div class="assignee-dropdown">
-            <input 
-              type="text" 
-              placeholder="Select contacts to assign"
-              (click)="toggleDropdown()" 
-              [readonly]="true"
-              [value]="getSelectedContactNames()"
-              class="assignee-input"
-            />
-            @if (dropdownOpen) {
-              <div class="dropdown-content">
-                @for (contact of firebaseTaskService.contactList; track contact.id) {
-                  <div class="dropdown-item">
-                    <span>{{ contact.name }}</span>
-                    <input 
-                      type="checkbox" 
-                      [value]="contact.id"
-                      [checked]="contact.id ? selectedAssignees.includes(contact.id) : false"
-                      (change)="onCheckboxChange($event)"
-                    />
-                  </div>
-                }
+          <ng-select
+            class="selectCotacts"
+            [items]="firebaseTaskService.contactList"
+            [multiple]="true"
+            bindLabel="initials"
+            [closeOnSelect]="false"
+            bindValue="id"
+            [(ngModel)]="selectedAssignees">
+            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+              <div class="contactInfo">
+                <div class="contact-avatar" [style.background-color]="item.color">
+                  {{ item.initials }}
+                </div>
+                {{ item.name }} 
               </div>
-            }
-          </div> -->
-
+              <input id="item-{{ index }}" type="checkbox" [ngModel]="item$.selected" /> 
+            </ng-template>
+            <ng-template ng-label-tmp let-item="item" let-item$="item$" let-index="index">
+              <div class="contactInfo">
+                <div class="contact-avatar" [style.background-color]="item.color">
+                  {{ item.initials }}
+                </div>
+              </div>
+            </ng-template>
+          </ng-select>
+        </label><br />
 
         <label>
           <p class="layoutLeftName">Category <span class="requred">*</span></p>

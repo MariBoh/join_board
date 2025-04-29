@@ -3,6 +3,8 @@ import { Firestore, collection, doc, onSnapshot, addDoc, updateDoc, deleteDoc, T
 import { ContactInterface } from '../interfaces/contact-interface';
 import { Subtask, Task } from '../interfaces/task';
 import { getDocs } from 'firebase/firestore';
+import { IContact } from '../interfaces/contact';
+import { Contact, generateInitials } from '../models/contact.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ import { getDocs } from 'firebase/firestore';
 export class TaskService {
   unsubscribe;
   firestore: Firestore = inject(Firestore);
-  contactList: ContactInterface[] = [];
+  contactList: Contact[] = [];
   allTasks: Task[] = [];
   subtaskUnsubscribe: { [id: string]: () => void } = {};
   allSubtasks: Subtask[] = [];
@@ -24,12 +26,14 @@ export class TaskService {
       // console.log(this.contactList);
     });
   }
-   setNewContactObject(id: string, obj: any): ContactInterface {
+   setNewContactObject(id: string, obj: any): Contact {
     return {
         id: id,
         name: obj.name,
         mail: obj.mail,
-        phone: obj.phone
+        phone: obj.phone,
+        color: obj.color,
+        initials: generateInitials(obj.name)
       };
     }
   

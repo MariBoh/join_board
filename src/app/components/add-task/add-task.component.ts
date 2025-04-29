@@ -3,11 +3,12 @@ import { TaskService } from '../../services/task.service';
 import { Component,inject, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-add-task',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgSelectModule],
   templateUrl: './add-task.component.html',
   styleUrl: './add-task.component.scss'
 })
@@ -15,15 +16,16 @@ export class AddTaskComponent implements AfterViewInit {
   firebaseTaskService = inject(TaskService);
   @ViewChild('dueDateInput') dueDateInput!: ElementRef<HTMLInputElement>;
 
-  title = '';
-  description = '';
+  title : string = '';
+  description : string = '';
   duedate: string = '';
-  priority = 'medium';
-  assignees = '';
-  category = '';
-  subtasksInput = '';
+  priority : string = 'medium';
+  category : string = '';
+  subtasksInput : {
+    title : string,
+    isdone : boolean
+  }[] = [];
   selectedAssignees: string[] = [];
-  dropdownOpen = false;
 
    async createNewTask() {
     const taskData = {
@@ -36,23 +38,14 @@ export class AddTaskComponent implements AfterViewInit {
       assignees: this.selectedAssignees,
     };
 
-    const subtasks = this.subtasksInput.split(',').map(title => ({
-      title: title.trim(),
-      isdone: false
-    }));
-
      await this.firebaseTaskService.addTaskWithSubtaskToDatabase(
       this.firebaseTaskService.firestore, 
       taskData, 
-      subtasks
+      this.subtasksInput
     );
 
      console.log('Task and Subtasks added');
      this.resetForm(); //to keep empty fields after submiting form
-  }
-
-  async deleteTask(taskId: string) {
-    await this.firebaseTaskService.deleteTaskByIdFromDatabase(taskId);
   }
   
   resetForm() {
@@ -61,33 +54,8 @@ export class AddTaskComponent implements AfterViewInit {
     this.duedate = '';
     this.priority = 'medium';  // default value
     this.category = '';
-    this.subtasksInput = '';
+    this.subtasksInput = [];
     this.selectedAssignees = [];
-    this.dropdownOpen = false;
-  }
-
-  toggleDropdown() {
-  this.dropdownOpen = !this.dropdownOpen;
-  }
-  
-  getSelectedContactNames(): string {
-  const selectedContacts = this.firebaseTaskService.contactList
-    .filter(contact => contact.id && this.selectedAssignees.includes(contact.id))
-    .map(contact => contact.name);
-    
-  return selectedContacts.join(', ');
-}
-
-  onCheckboxChange(event: any) {
-    const id = event.target.value;
-
-    if (event.target.checked) {
-      // If checked, add the ID
-      this.selectedAssignees.push(id);
-    } else {
-      // If unchecked, remove the ID
-      this.selectedAssignees = this.selectedAssignees.filter(a => a !== id);
-    }
   }
 
   //Funktion von Valeriya
