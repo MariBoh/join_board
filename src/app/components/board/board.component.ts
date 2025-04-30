@@ -14,7 +14,7 @@ import { generateRandomColor } from '../../models/contact.model';
   standalone: true,
   imports: [CdkDropListGroup, CdkDropList, CdkDrag, CommonModule, FormsModule],
   templateUrl: './board.component.html',
-  styleUrl: './board.component.scss'
+  styleUrls: ['./board.component.scss', './board.responsive.scss']
 })
 
 export class BoardComponent {
@@ -126,5 +126,6 @@ updateColumnsFromFirebase(): void {
     if (!contact) return '?';
     return contact.name.split(' ').map(n => n[0]).join('');
   }
+
 }
 

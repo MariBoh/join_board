@@ -31,6 +31,8 @@ $join_board-theme: mat.define-light-theme((color: (primary: $join_board-primary,
 // that you are using.
 @include mat.all-component-themes($join_board-theme);
 
+@import "@ng-select/ng-select/themes/default.theme.css";
+
 :root {
   --primary-bg: #ffffff;
   --secondary-bg: #f6f7f8;
