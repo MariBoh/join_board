@@ -37,7 +37,6 @@
         padding: 0 0 20px 0;
       }
 
-      // Inhalt Left & Right Side
       .leftSide {
         border-right: 1px solid $border-add-task;
 
@@ -173,6 +172,21 @@
             }
           }
 
+          .ng-select ::ng-deep .ng-dropdown-panel .ng-option.ng-option-selected,
+          .ng-select
+            ::ng-deep
+            .ng-dropdown-panel
+            .ng-option.ng-option-selected.ng-option-marked {
+            color: $secondary-font;
+            background-color: $darkblue;
+            border-radius: 12px;
+            margin-block: 2px;
+
+            &:hover {
+              background-color: $deep-space-blue;
+            }
+          }
+
           .ng-select
             ::ng-deep
             .ng-dropdown-panel
@@ -304,6 +318,7 @@
           .assignedTo {
             padding-bottom: 50px;
           }
+
           .prioTasks {
             width: clamp(100px, 25vw, 230px);
           }
