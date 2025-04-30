@@ -39,7 +39,7 @@
             <img src="../../../assets/imgs/imgs_story2/addTask/Low1.png" alt="img Task" /></a>
         </div>
 
-
+        <!-- Assignees field -->
         <div class="assignee-dropdown">
           <div class="assignee-input-wrapper" (click)="toggleDropdown()">
             <input type="text" [readonly]="true" placeholder="Select contacts to assign" class="assignee-input" />
@@ -59,6 +59,17 @@
             </div>
             }
           </div>
+          }
+        </div>
+        <!-- Showing selected assignees as colored bubbles -->
+        <div class="selected-assignees">
+          @for (id of selectedAssignees; track id) {
+            <span 
+              class="avatar-badge"
+              [style.backgroundColor]="getAvatarColor(id)"
+            >
+              {{ getContactInitials(id) }}
+            </span>
           }
         </div>
 

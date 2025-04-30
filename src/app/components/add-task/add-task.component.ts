@@ -105,6 +105,13 @@ export class AddTaskComponent implements AfterViewInit {
     return this.avatarColors[contactId];
   }
 
+  //to get exact id of select name to assign creating following function
+  getContactInitials(contactId: string): string { 
+    const contact = this.firebaseTaskService.contactList.find(c => c.id === contactId);
+    return contact ? generateInitials(contact.name) : '?';
+  }
+
+
   //Funktion von Valeriya
   ngAfterViewInit(): void {
     this.setTodayAsMinDate();

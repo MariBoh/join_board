@@ -19,6 +19,7 @@ import { generateRandomColor } from '../../models/contact.model';
 
 export class BoardComponent {
   firebaseTaskService = inject(TaskService);
+  private avatarColorCache: { [id: string]: string } = {};
 
   constructor(public firebaseService: FirebaseService) { }
   //When the app starts, it reads the status of each task from Firebase and places it into the correct column.
@@ -108,8 +109,11 @@ updateColumnsFromFirebase(): void {
   }
   
   getAvatarColor(id: string): string {
-    return generateRandomColor(); 
+  if (!this.avatarColorCache[id]) {
+    this.avatarColorCache[id] = generateRandomColor();
   }
+  return this.avatarColorCache[id];
+} //This guarantees that each assigneeId always gets the same color every time Angular runs change detection.
 
 
   getConnectedColumns() {

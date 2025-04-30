@@ -45,6 +45,7 @@ export class TaskService {
       querySnap.forEach((doc) => {
         const task = this.setTaskObject(doc.data(), doc.id);
         this.allTasks.push(task);
+        // console.log(task);
 
         // Setup subtasks
         const subtaskRef = collection(this.firestore, `tasks/${task.id}/subtasks`);
