@@ -4,9 +4,137 @@
       <h1 class="headingAddTask">Add Task</h1>
     </header>
 
-    <!-- ======= Unter ist in arbeit ======= -->
+
     <main class="addTaskContent">
-      <!-- ======= left Side in arbeit ======= -->
+
+      <div class="leftSide">
+        <label>
+          <p class="layoutLeftName">Title <span class="requred">*</span></p>
+          <input class="enterTitle inputTitle" type="text" placeholder="Enter a title" required [(ngModel)]="title" />
+        </label><br />
+
+        <label>
+          <p class="layoutLeftName">Description</p>
+          <textarea class="enterTitle inputDescription" type="text" placeholder="Enter a Description"
+            [(ngModel)]="description"></textarea>
+        </label><br />
+
+        <label>
+          <p class="layoutLeftName">Due date <span class="requred">*</span></p>
+          <input #dueDateInput class="enterTitle inputData" type="date" (change)="validateDueDate()" [attr.lang]="'en'"
+            required [(ngModel)]="duedate" />
+        </label>
+      </div>
+
+
+      <div class="rightSide">
+        <p class="layoutLeftName">Priority</p>
+        <div class="priority layoutLeftName">
+          <a class="prioTasks" (click)="priority = 'urgent'">Urgent
+            <img src="../../../assets/imgs/imgs_story2/addTask/Urgent1.png" alt="img Task" /></a>
+
+          <a class="prioTasks" (click)="priority = 'medium'">Medium
+            <img src="../../../assets/imgs/imgs_story2/addTask/Medium1.png" alt="img Task" /></a>
+          <a class="prioTasks" (click)="priority = 'low'">Low
+            <img src="../../../assets/imgs/imgs_story2/addTask/Low1.png" alt="img Task" /></a>
+        </div>
+
+
+        <div class="assignee-dropdown">
+          <div class="assignee-input-wrapper" (click)="toggleDropdown()">
+            <input type="text" [readonly]="true" placeholder="Select contacts to assign" class="assignee-input" />
+            <span class="dropdown-arrow">▼</span>
+          </div>
+
+          @if (dropdownOpen) {
+          <div class="dropdown-content">
+            @for (contact of firebaseTaskService.contactList; track contact.id) {
+            <div class="dropdown-item">
+              <span class="avatar" [style.backgroundColor]="getAvatarColor(contact.id ?? '')">
+                {{ generateInitials(contact.name) }}
+              </span>
+              <span class="contact-name">{{ contact.name }}</span>
+              <input type="checkbox" [value]="contact.id"
+                [checked]="contact.id && selectedAssignees.includes(contact.id)" (change)="onCheckboxChange($event)" />
+            </div>
+            }
+          </div>
+          }
+        </div>
+
+        <label>
+          <p class="layoutLeftName">Category <span class="requred">*</span></p>
+          <select required class="enterTitle selectCategory" [(ngModel)]="category">
+            <option value="Technical Task">Technical Task</option>
+            <option value="User Story">User Story</option>
+          </select>
+        </label><br />
+
+        <label>
+          <p class="layoutLeftName">Subtasks <span class="requred">*</span></p>
+          <label>Subtasks (comma separated)</label>
+          <input type="text" [(ngModel)]="subtasksInput" name="subtasks" />
+        </label>
+      </div>
+    </main>
+
+    <footer class="addTaskFooter">
+      <p class="layoutLeftName"><span class="requred">*</span>This field is required</p>
+      <div class="footerButtons">
+        <a type="reset" class="clear">Clear</a>
+        <a type="submit" class="create" (click)="createNewTask()">Create Tasks</a>
+      </div>
+    </footer>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <section class="addTask">
+  <div class="addTaskMaxWidth">
+    <header class="addTaskHeader">
+      <h1 class="headingAddTask">Add Task</h1>
+    </header>
+
+
+    <main class="addTaskContent">
+
       <div class="leftSide">
         <label>
           <p class="layoutLeftName">Title <span class="requred">*</span></p>
@@ -43,7 +171,7 @@
         </label>
       </div>
 
-      <!-- ======= left Side in arbeit ======= -->
+
       <div class="rightSide">
         <p class="layoutLeftName">Priority</p>
         <div class="priority layoutLeftName">
@@ -107,9 +235,7 @@
           <select required class="enterTitle subtasks" [(ngModel)]="subtasksInput">
             <option>Add new subask</option>
           </select>
-           <!-- Valeriya i need your attention here  -->
-          <!-- <label>Subtasks (comma separated)</label>
-            <input type="text" [(ngModel)]="subtasksInput" name="subtasks" /> -->
+   
           </label>
       </div>
     </main>
@@ -122,4 +248,4 @@
       </div>
     </footer>
   </div>
-</section>
+</section> -->

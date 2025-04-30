@@ -31,7 +31,7 @@
     background: white;
     border-radius: 24px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: grab;
+    cursor: move;
 
     .task-category {
         padding: 0 10px;
@@ -162,7 +162,7 @@
 
 .example-box.cdk-drag-dragging,
 body.cdk-dragging {
-    cursor: grabbing !important;
+    cursor: move !important;
 }
 
 .example-list .cdk-drag-preview {

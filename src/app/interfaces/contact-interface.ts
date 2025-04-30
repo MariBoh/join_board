@@ -3,5 +3,6 @@ export interface ContactInterface {
   name: string;
   mail: string;
   phone: string;
+  color?: string;
 }
 
