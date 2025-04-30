@@ -15,6 +15,7 @@
             type="text"
             placeholder="Enter a title"
             required
+             [(ngModel)]="title"
           /> </label
         ><br />
 
@@ -24,67 +25,100 @@
             class="enterTitle inputDescription"
             type="text"
             placeholder="Enter a Description"
+            [(ngModel)]="description"
           ></textarea></label
         ><br />
 
         <label>
           <p class="layoutLeftName">Due date <span class="requred">*</span></p>
-          <input #dueDateInput class="enterTitle inputData" type="date" (change)="validateDueDate()" required />
+          <input
+            #dueDateInput
+            class="enterTitle inputData"
+            type="date"
+            (change)="validateDueDate()"
+            [attr.lang]="'en'"
+            required
+            [(ngModel)]="duedate"
+          />
         </label>
       </div>
 
       <!-- ======= left Side in arbeit ======= -->
       <div class="rightSide">
-        <div class="priority">
-          <a
-            >Urgent
+        <p class="layoutLeftName">Priority</p>
+        <div class="priority layoutLeftName">
+          <a class="prioTasks" (click)="priority = 'urgent'">Urgent
             <img
               src="../../../assets/imgs/imgs_story2/addTask/Urgent1.png"
               alt="img Task"
           /></a>
-          <br />
-          <a
-            >Medium
+          
+          <a class="prioTasks" (click)="priority = 'medium'">Medium
             <img
               src="../../../assets/imgs/imgs_story2/addTask/Medium1.png"
               alt="img Task" /></a
-          ><br />
-          <a
-            >Low
+          >
+          <a class="prioTasks" (click)="priority = 'low'">Low
             <img
               src="../../../assets/imgs/imgs_story2/addTask/Low1.png"
-              alt="img Task" /></a
-          ><br />
+              alt="img Task" /></a>
         </div>
 
+        <label class="assignedTo"> 
+          <p class="layoutLeftName">Assigned to</p>
+
+          <ng-select
+            class="selectCotacts"
+            [items]="firebaseTaskService.contactList"
+            [multiple]="true"
+            bindLabel="initials"
+            [closeOnSelect]="false"
+            bindValue="id"
+            [(ngModel)]="selectedAssignees">
+            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+              <div class="contactInfo">
+                <div class="contact-avatar" [style.background-color]="item.color">
+                  {{ item.initials }}
+                </div>
+                {{ item.name }} 
+              </div>
+              <input id="item-{{ index }}" type="checkbox" [ngModel]="item$.selected" /> 
+            </ng-template>
+            <ng-template ng-label-tmp let-item="item" let-item$="item$" let-index="index">
+              <div class="contactInfo">
+                <div class="contact-avatar" [style.background-color]="item.color">
+                  {{ item.initials }}
+                </div>
+              </div>
+            </ng-template>
+          </ng-select>
+        </label><br />
+
         <label>
-          Assigned to<br />
-          <select>
-            <option>Select contacts to assign</option>
+          <p class="layoutLeftName">Category <span class="requred">*</span></p>
+          <select required class="enterTitle selectCategory" [(ngModel)]="category">
+            <option value="Technical Task">Technical Task</option>
+             <option value="User Story">User Story</option>
           </select> </label
         ><br />
 
         <label>
-          Category <span class="requred">*</span><br />
-          <select required>
-            <option>Select task category</option>
-          </select> </label
-        ><br />
-
-        <label>
-          Subtasks <span class="requred">*</span><br />
-          <select required>
+          <p class="layoutLeftName">Subtasks <span class="requred">*</span></p>
+          <select required class="enterTitle subtasks" [(ngModel)]="subtasksInput">
             <option>Add new subask</option>
-          </select> </label
-        ><br />
+          </select>
+           <!-- Valeriya i need your attention here  -->
+          <!-- <label>Subtasks (comma separated)</label>
+            <input type="text" [(ngModel)]="subtasksInput" name="subtasks" /> -->
+          </label>
       </div>
     </main>
 
     <footer class="addTaskFooter">
-      <span><span class="requred">*</span>This field is required</span>
+      <p class="layoutLeftName"><span class="requred">*</span>This field is required</p>
       <div class="footerButtons">
         <a type="reset" class="clear">Clear</a>
-        <a type="submit" class="create">Create Tasks</a>
+       <a type="submit" class="create" (click)="createNewTask()">Create Tasks</a>
       </div>
     </footer>
   </div>
