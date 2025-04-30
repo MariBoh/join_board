@@ -64,53 +64,40 @@
               alt="img Task" /></a>
         </div>
 
-        <!-- Valeriya i need your attention here--> 
-         <label> 
-          <p class="layoutLeftName">Assigned to</p>
-          <select class="enterTitle selectCotacts" (click)="toggleDropdown()"
-          [value]="getSelectedContactNames()">
-          @if(dropdownOpen){
-             @for (contact of firebaseTaskService.contactList; track contact.id) {
-              <div class="dropdown-item">
-                <span>{{ contact.name }}</span>
-                <input 
-                  type="checkbox" 
-                  [value]="contact.id"
-                  [checked]="contact.id ? selectedAssignees.includes(contact.id) : false"
-                  (change)="onCheckboxChange($event)"
-                />
-              </div>
-            }
-          }
-           
-          </select> </label><br />
-
-          <!-- <div class="assignee-dropdown">
+       
+         <div class="assignee-dropdown">
+          <div class="assignee-input-wrapper" (click)="toggleDropdown()">
             <input 
-              type="text" 
-              placeholder="Select contacts to assign"
-              (click)="toggleDropdown()" 
+              type="text"
               [readonly]="true"
-              [value]="getSelectedContactNames()"
+              placeholder="Select contacts to assign"
               class="assignee-input"
             />
-            @if (dropdownOpen) {
-              <div class="dropdown-content">
-                @for (contact of firebaseTaskService.contactList; track contact.id) {
-                  <div class="dropdown-item">
-                    <span>{{ contact.name }}</span>
-                    <input 
-                      type="checkbox" 
-                      [value]="contact.id"
-                      [checked]="contact.id ? selectedAssignees.includes(contact.id) : false"
-                      (change)="onCheckboxChange($event)"
-                    />
-                  </div>
-                }
-              </div>
-            }
-          </div> -->
+            <span class="dropdown-arrow">▼</span>
+          </div>
 
+          @if (dropdownOpen) {
+            <div class="dropdown-content">
+              @for (contact of firebaseTaskService.contactList; track contact.id) {
+                <div class="dropdown-item">
+                  <span
+                    class="avatar"
+                    [style.backgroundColor]="getAvatarColor(contact.id ?? '')"
+                  >
+                    {{ generateInitials(contact.name) }}
+                  </span>
+                  <span class="contact-name">{{ contact.name }}</span>
+                  <input
+                    type="checkbox"
+                    [value]="contact.id"
+                    [checked]="contact.id && selectedAssignees.includes(contact.id)"
+                    (change)="onCheckboxChange($event)"
+                  />
+                </div>
+              }
+            </div>
+          }
+        </div>
 
         <label>
           <p class="layoutLeftName">Category <span class="requred">*</span></p>
@@ -122,12 +109,12 @@
 
         <label>
           <p class="layoutLeftName">Subtasks <span class="requred">*</span></p>
-          <select required class="enterTitle subtasks" [(ngModel)]="subtasksInput">
+          <!-- <select required class="enterTitle subtasks" [(ngModel)]="subtasksInput">
             <option>Add new subask</option>
-          </select>
+          </select> -->
            <!-- Valeriya i need your attention here  -->
-          <!-- <label>Subtasks (comma separated)</label>
-            <input type="text" [(ngModel)]="subtasksInput" name="subtasks" /> -->
+          <label>Subtasks (comma separated)</label>
+            <input type="text" [(ngModel)]="subtasksInput" name="subtasks" />
           </label>
       </div>
     </main>

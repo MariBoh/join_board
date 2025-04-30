@@ -3,6 +3,7 @@ import { Firestore, collection, doc, onSnapshot, addDoc, updateDoc, deleteDoc, T
 import { ContactInterface } from '../interfaces/contact-interface';
 import { Subtask, Task } from '../interfaces/task';
 import { getDocs } from 'firebase/firestore';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class TaskService {
   allTasks: Task[] = [];
   subtaskUnsubscribe: { [id: string]: () => void } = {};
   allSubtasks: Subtask[] = [];
+  tasks$ = new BehaviorSubject<Task[]>([]);
 
   constructor() {
     this.unsubscribe = onSnapshot(collection(this.firestore, 'contacts'), (querySnap) => {
@@ -29,40 +31,46 @@ export class TaskService {
         id: id,
         name: obj.name,
         mail: obj.mail,
-        phone: obj.phone
+        phone: obj.phone,
+        color: obj.color
       };
     }
   
-    loadAllTasks() {
+  loadAllTasks() {
     const tasksRef = collection(this.firestore, 'tasks');
+
     onSnapshot(tasksRef, (querySnap) => {
-      this.allTasks = [];
+      this.allTasks = []; // Reset old data
 
       querySnap.forEach((doc) => {
         const task = this.setTaskObject(doc.data(), doc.id);
-         console.log('Task added:', task);
         this.allTasks.push(task);
 
-        // Set up subtasks listener
+        // Setup subtasks
         const subtaskRef = collection(this.firestore, `tasks/${task.id}/subtasks`);
-        this.subtaskUnsubscribe[task.id]?.(); // Unsubscribe if already listening
+        this.subtaskUnsubscribe[task.id]?.(); // Unsubscribe old
 
         this.subtaskUnsubscribe[task.id] = onSnapshot(subtaskRef, (subSnap) => {
           this.allSubtasks = [];
           subSnap.docs.forEach((sdoc) => {
-          this.allSubtasks.push({ id: sdoc.id, ...(sdoc.data() as Omit<Subtask, 'id'>),
-            }); 
+            this.allSubtasks.push({
+              id: sdoc.id,
+              ...(sdoc.data() as Omit<Subtask, 'id'>),
+            });
           });
           const index = this.allTasks.findIndex((t) => t.id === task.id);
           if (index !== -1) {
             this.allTasks[index].subtasks = this.allSubtasks;
-            console.log(this.allSubtasks);
-            
           }
         });
       });
+
+      //After all tasks are processed
+      this.tasks$.next(this.allTasks);
     });
   }
+
+
   setTaskObject(task: any, id: string): Task {
       return {
         id: id,

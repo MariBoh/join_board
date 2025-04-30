@@ -5,13 +5,14 @@ import { CdkDragDrop, CdkDrag, CdkDropList, CdkDropListGroup, moveItemInArray, t
 import { FirebaseService } from '../../services/firebase.service';
 import { CommonModule } from '@angular/common';
 import { Task } from '../../interfaces/task';
-import { FakeTask, FakeContact } from '../../models/fake-task.model';
-import { FAKE_TASKS, FAKE_CONTACTS } from '../../models/fake-data.model';
+import { FormsModule } from '@angular/forms';
+import { generateRandomColor } from '../../models/contact.model';
+
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [CdkDropListGroup, CdkDropList, CdkDrag, CommonModule],
+  imports: [CdkDropListGroup, CdkDropList, CdkDrag, CommonModule, FormsModule],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss'
 })
@@ -19,9 +20,16 @@ import { FAKE_TASKS, FAKE_CONTACTS } from '../../models/fake-data.model';
 export class BoardComponent {
   firebaseTaskService = inject(TaskService);
 
-   ngOnInit() {
-    this.firebaseTaskService.loadAllTasks();
-  }
+  constructor(public firebaseService: FirebaseService) { }
+  //When the app starts, it reads the status of each task from Firebase and places it into the correct column.
+  ngOnInit() {
+  this.firebaseTaskService.loadAllTasks();
+
+  this.firebaseTaskService.tasks$.subscribe((tasks) => {
+    this.firebaseTaskService.allTasks = tasks;
+    this.updateColumnsFromFirebase(); // Group tasks when they are actually loaded
+  });
+}
 
    async deleteTask(taskId: string) {
     await this.firebaseTaskService.deleteTaskByIdFromDatabase(taskId);
@@ -46,87 +54,20 @@ export class BoardComponent {
     await this.firebaseTaskService.updateSubtaskInDatabase(taskId, subtaskId, updatedSubtask);
   }
 
+  //drag n drop + cards detail functionalities
   getContactNameById(id: string): string {
     let contact = this.firebaseTaskService.contactList.find(c => c.id === id);
-    return contact ? contact.name : 'Unbekannt';
-  }
-    
-  constructor(public firebaseService: FirebaseService) {
-
+    return contact ? contact.name : 'unknown';
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-  // inProgress = ['Develop feature', 'Write tests', 'Fix bug', 'Drink coffee'];
-  // awaitFeedback = ['Review bugfix', 'Test Formatting', 'Check spelling', 'Check grammar'];
-  // done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
-
-  // drop(event: CdkDragDrop<string[]>) {
-  //   if (event.previousContainer === event.container) {
-  //     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-  //   } else {
-  //     transferArrayItem(
-  //       event.previousContainer.data,
-  //       event.container.data,
-  //       event.previousIndex,
-  //       event.currentIndex,
-  //     );
-  //   }
-  // }
-
-  // getContactNameById(id: string): string {
-  //   let contact = this.firebaseService.contacts.find(c => c.id === id);
-  //   return contact ? contact.name : 'Unbekannt';
-  // }
-
-
-
-
-  // Fake Data for testing purposes
-
-  columns = [
-    { title: 'To do', tasks: [...FAKE_TASKS] },
+  columns: { title: string; tasks: Task[] }[] = [
+    { title: 'To do', tasks: [] },
     { title: 'In progress', tasks: [] },
     { title: 'Await feedback', tasks: [] },
     { title: 'Done', tasks: [] }
   ];
 
-  drop(event: CdkDragDrop<FakeTask[]>) {
+  drop(event: CdkDragDrop<Task[]>, columnTitle: string) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -136,20 +77,54 @@ export class BoardComponent {
         event.previousIndex,
         event.currentIndex
       );
+
+      const movedTask = event.container.data[event.currentIndex];
+
+      // Persist the new status in Firebase
+      this.firebaseTaskService.updateTaskInDatabase(movedTask.id, {
+        status: columnTitle
+      });
     }
   }
+
+updateColumnsFromFirebase(): void {
+    // Clear columns
+    this.columns.forEach(col => col.tasks = []);
+
+    for (const task of this.firebaseTaskService.allTasks) {
+      const status = task.status?.toLowerCase();
+
+      const column = this.columns.find(col =>
+        col.title.toLowerCase() === status
+      );
+
+      if (column) {
+        column.tasks.push(task);
+      } else {
+        // If no matching column, put it into "To do"
+        this.columns[0].tasks.push(task);
+      }
+    }
+  }
+  
+  getAvatarColor(id: string): string {
+    return generateRandomColor(); 
+  }
+
 
   getConnectedColumns() {
     return this.columns.map(c => c.title);
   }
 
-  getCompletedSubtasksCount(task: FakeTask): number {
-    return task.fakeSubtasks.filter(sub => sub.fakeCompleted).length;
+  getCompletedSubtasksCount(task: Task): number {
+    return task.subtasks.filter(sub => sub.isdone).length;
   }
 
-  getFakeContactInitials(fakeId: string): string {
-    const contact = FAKE_CONTACTS.find(c => c.fakeId === fakeId);
-    return contact ? contact.fakeName.split(' ').map(n => n[0]).join('') : '?';
+
+  getContactInitials(contactId: string): string {
+    const contact = this.firebaseTaskService.contactList.find(c => c.id === contactId);
+    if (!contact) return '?';
+    return contact.name.split(' ').map(n => n[0]).join('');
   }
 }
 

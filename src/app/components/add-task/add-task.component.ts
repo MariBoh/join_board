@@ -3,6 +3,8 @@ import { TaskService } from '../../services/task.service';
 import { Component,inject, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { generateInitials, generateRandomColor } from '../../models/contact.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-task',
@@ -14,6 +16,10 @@ import { FormsModule } from '@angular/forms';
 export class AddTaskComponent implements AfterViewInit {
   firebaseTaskService = inject(TaskService);
   @ViewChild('dueDateInput') dueDateInput!: ElementRef<HTMLInputElement>;
+  generateInitials = generateInitials;
+  generateRandomColor = generateRandomColor;
+  avatarColors: { [contactId: string]: string } = {};
+  router = inject(Router);
 
   title = '';
   description = '';
@@ -49,6 +55,7 @@ export class AddTaskComponent implements AfterViewInit {
 
      console.log('Task and Subtasks added');
      this.resetForm(); //to keep empty fields after submiting form
+     this.router.navigate(['/board']); //redirecting to board
   }
 
   async deleteTask(taskId: string) {
@@ -70,12 +77,13 @@ export class AddTaskComponent implements AfterViewInit {
   this.dropdownOpen = !this.dropdownOpen;
   }
   
-  getSelectedContactNames(): string {
-  const selectedContacts = this.firebaseTaskService.contactList
+ getSelectedContactNames(): { initials: string; color: string }[] {
+  return this.firebaseTaskService.contactList
     .filter(contact => contact.id && this.selectedAssignees.includes(contact.id))
-    .map(contact => contact.name);
-    
-  return selectedContacts.join(', ');
+    .map(contact => ({
+      initials: generateInitials(contact.name),
+      color: generateRandomColor()
+    }));
 }
 
   onCheckboxChange(event: any) {
@@ -88,6 +96,13 @@ export class AddTaskComponent implements AfterViewInit {
       // If unchecked, remove the ID
       this.selectedAssignees = this.selectedAssignees.filter(a => a !== id);
     }
+  }
+
+  getAvatarColor(contactId: string): string {
+    if (!this.avatarColors[contactId]) {
+      this.avatarColors[contactId] = this.generateRandomColor();
+    }
+    return this.avatarColors[contactId];
   }
 
   //Funktion von Valeriya
