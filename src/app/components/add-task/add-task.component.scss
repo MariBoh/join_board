@@ -289,6 +289,25 @@
       }
     }
   }
+  .assignee-input{
+    width: 100%;
+    padding: 15px;
+  }
+  .dropdown-item{
+    display: flex;
+      gap: 5px;
+  }
+  .avatar{
+        color: #fff;
+          padding: 2px;
+  }
+  .avatar-badge{
+    color: #fff;
+  }
+  .subtasks-input{
+    width: 100%;
+    padding: 15px;
+  }
 
   @media (max-width: 936px) {
     width: 100%;

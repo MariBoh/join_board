@@ -43,7 +43,7 @@
         <div class="assignee-dropdown">
           <div class="assignee-input-wrapper" (click)="toggleDropdown()">
             <input type="text" [readonly]="true" placeholder="Select contacts to assign" class="assignee-input" />
-            <span class="dropdown-arrow">▼</span>
+            <span class="dropdown-arrow"></span>
           </div>
 
           @if (dropdownOpen) {
@@ -62,16 +62,18 @@
           }
         </div>
         <!-- Showing selected assignees as colored bubbles -->
-        <div class="selected-assignees">
-          @for (id of selectedAssignees; track id) {
-            <span 
-              class="avatar-badge"
-              [style.backgroundColor]="getAvatarColor(id)"
-            >
-              {{ getContactInitials(id) }}
-            </span>
+        @if (!dropdownOpen) {
+            <div class="selected-assignees">
+              @for (id of selectedAssignees; track id) {
+                <span 
+                  class="avatar-badge"
+                  [style.backgroundColor]="getAvatarColor(id)"
+                >
+                  {{ getContactInitials(id) }}
+                </span>
+              }
+            </div>
           }
-        </div>
 
         <label>
           <p class="layoutLeftName">Category <span class="requred">*</span></p>
@@ -84,7 +86,7 @@
         <label>
           <p class="layoutLeftName">Subtasks <span class="requred">*</span></p>
           <label>Subtasks (comma separated)</label>
-          <input type="text" [(ngModel)]="subtasksInput" name="subtasks" />
+          <input class="subtasks-input" type="text" [(ngModel)]="subtasksInput" name="subtasks" placeholder="add new subtask"/>
         </label>
       </div>
     </main>
