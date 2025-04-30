@@ -10,7 +10,7 @@
             <div class="header-controls">
                 <div class="search-bar">
                     <div class="search-input-wrapper">
-                        <input id="searchInput" type="text" placeholder="Find Task"/>
+                        <input id="searchInput" type="text" placeholder="Find Task" />
                         <span class="divider"></span>
                     </div>
                     <button class="search-icon">
@@ -18,7 +18,8 @@
                     </button>
                 </div>
                 <button class="add-task-btn">
-                    Add task +
+                    <span class="add-task-text">Add task +</span>
+                    <span class="add-task-text-mobile">&#65291;</span>
                 </button>
             </div>
         </div>
@@ -40,7 +41,9 @@
 
                 @for (task of column.tasks; track task.fakeId) {
                 <div class="example-box" cdkDrag>
-                    <div class="task-category">{{ task.fakeCategory }}</div>
+                    <div class="task-category" [ngClass]=" { 'user-story' : task.fakeCategory ===
+                     'User Story', 'technical-task' : task.fakeCategory === 'Technical Task' }">{{ task.fakeCategory }}
+                    </div>
                     <h3 class="task-title">{{ task.fakeTitle }}</h3>
                     <p class="task-description">{{ task.fakeDescription }}</p>
                     <!-- Subtask -->
@@ -73,22 +76,3 @@
         }
     </div>
 </div>
-
-
-
-
-<!-- @for (item of firebaseService.tasks; track $index) {
-        <div class="contact-card">
-            <p>title: {{ item.title }}</p>
-            <p>description: {{ item.description }}</p>
-            <p>category: {{ item.category }}</p>
-            <p>priority: {{ item.priority }}</p>
-            <p>status: {{ item.status }}</p>
-            <p>due date: {{ item.duedate.toDate() | date: 'dd.MM.yy' }}</p>
-            <p>assignees:</p>
-            @for (item of item.assignees; track $index) {
-            <p class="sub-content">Assignee {{$index+1}}: {{ item }} -> {{ getContactNameById(item) }} </p>
-            }
-            <p>subtasks: {{ item.id }}</p>
-        </div>
-        } -->
